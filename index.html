@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXTSTEP HACK 2027 — سجّل مكانك</title>
+<meta name="description" content="هاكاثون ابتكار أونلاين متعدد التخصصات من NextStep AI. خمسة أيام، عقول مختلفة، حل واحد. فرق من 5 أعضاء من كل الدول والتخصصات.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0D1B3D;
+  --ink-2:#14306e;
+  --blue:#146EF5;
+  --blue-deep:#0B3FA0;
+  --cyan:#35D6F5;
+  --sky:#BFE6FA;
+  --wash:#F3F8FF;
+  --line:#DDE6F4;
+  --muted:#5A6B8C;
+  --silver:#C9D2DC;
+  --ok:#12a150;
+  --err:#d6293e;
+  --c1:#FF5C7A; --c2:#146EF5; --c3:#7C5CFF; --c4:#FFB020; --c5:#1FC8A0;
+  --font-ar:'Cairo', system-ui, sans-serif;
+  --font-en:'Montserrat','Cairo', sans-serif;
+  --r-lg:24px; --r-md:16px; --r-sm:12px;
+  --extrude:-1px 1px 0 #d3e2fb,-2px 2px 0 #cadcf9,-3px 3px 0 #c1d6f8,-4px 4px 0 #b8cff6,-5px 5px 0 #afc8f4,-6px 6px 0 #a6c1f2;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-ar);color:var(--ink);line-height:1.8;background:#fff;
+  background-image:
+    radial-gradient(1000px 560px at 88% -8%, rgba(20,110,245,.13), transparent 62%),
+    radial-gradient(800px 520px at 2% 6%, rgba(53,214,245,.16), transparent 60%);
+  min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(13,27,61,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,27,61,.045) 1px, transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(ellipse 85% 55% at 50% 18%, #000 15%, transparent 75%);
+  mask-image:radial-gradient(ellipse 85% 55% at 50% 18%, #000 15%, transparent 75%);
+}
+.wrap{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 22px;}
+a{color:var(--blue);text-decoration:none;}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:8px;}
+button{font-family:inherit;cursor:pointer;}
+[hidden]{display:none !important;}
+
+/* top bar */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:16px;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;font-family:var(--font-en);font-weight:800;font-size:.9rem;color:#fff;overflow:hidden;position:relative;box-shadow:0 4px 0 var(--blue-deep),0 10px 18px rgba(20,110,245,.3);}
+.brand-mark img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;}
+.brand b{display:block;font-family:var(--font-en);font-weight:800;font-size:1rem;line-height:1.2;color:var(--ink);}
+.brand small{display:block;color:var(--muted);font-size:.78rem;line-height:1.3;}
+.top-cta{font-weight:800;font-size:.9rem;color:var(--ink);background:#fff;border:1.5px solid var(--ink);padding:9px 22px;border-radius:999px;box-shadow:0 4px 0 var(--ink);transition:transform .12s, box-shadow .12s;}
+.top-cta:hover{transform:translateY(-1px);box-shadow:0 5px 0 var(--ink);}
+.top-cta:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink);}
+
+/* hero */
+.hero{display:grid;grid-template-columns:.95fr 1.05fr;gap:20px;align-items:center;padding:20px 0 54px;}
+.title{font-family:var(--font-en);font-weight:900;line-height:.98;letter-spacing:-.02em;direction:ltr;text-align:right;}
+.t-en{display:block;font-size:clamp(2.4rem,5.6vw,4.3rem);color:var(--ink);
+  text-shadow:1px 1px 0 #7fb2ff,2px 2px 0 #7fb2ff,3px 3px 0 #6aa3fb,4px 4px 0 #6aa3fb,5px 5px 0 #5594f7,6px 6px 0 #5594f7,10px 16px 26px rgba(20,110,245,.28);}
+.t-year{display:block;font-size:clamp(3.8rem,10vw,7.4rem);color:var(--blue);margin-top:6px;
+  text-shadow:1px 1px 0 var(--blue-deep),2px 2px 0 var(--blue-deep),3px 3px 0 #0a3586,4px 4px 0 #0a3586,5px 5px 0 #08296b,6px 6px 0 #08296b,7px 7px 0 var(--ink),8px 8px 0 var(--ink),12px 20px 30px rgba(13,27,61,.3);}
+.lead{font-size:clamp(1.15rem,2.2vw,1.45rem);font-weight:800;margin-top:26px;}
+.tagline{font-family:var(--font-en);font-weight:700;color:var(--blue);font-size:1.02rem;margin-top:8px;direction:ltr;text-align:right;}
+.tagline-ar{color:var(--muted);font-size:.98rem;margin-top:2px;font-weight:600;}
+.facts{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:26px;color:var(--ink);font-size:.95rem;font-weight:600;}
+.facts span{display:flex;align-items:center;gap:9px;}
+.facts span::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--blue);transform:rotate(45deg);box-shadow:2px 2px 0 var(--cyan);}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:1rem;padding:14px 32px;border-radius:999px;border:none;transition:transform .12s, box-shadow .12s;}
+.btn-primary{background:linear-gradient(180deg,#3b8bff,var(--blue));color:#fff;box-shadow:0 6px 0 var(--blue-deep),0 16px 26px rgba(20,110,245,.35);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--blue-deep),0 20px 30px rgba(20,110,245,.4);}
+.btn-primary:active{transform:translateY(5px);box-shadow:0 1px 0 var(--blue-deep),0 6px 12px rgba(20,110,245,.3);}
+.btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);box-shadow:0 5px 0 #d5e0f2;}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:0 7px 0 #d5e0f2;}
+.btn-ghost:active{transform:translateY(4px);box-shadow:0 1px 0 #d5e0f2;}
+.btn[disabled]{opacity:.6;cursor:not-allowed;transform:none;}
+.launch-note{margin-top:20px;color:var(--muted);font-size:.88rem;}
+
+.hero-art{position:relative;aspect-ratio:1/.92;min-height:320px;}
+.hero-art::before{content:"";position:absolute;inset:8% 6% 4%;border-radius:50%;background:radial-gradient(closest-side, rgba(53,214,245,.22), rgba(20,110,245,.07) 60%, transparent 72%);}
+.hero-art canvas{position:relative;width:100%;height:100%;display:block;touch-action:pan-y;}
+.scene-hint{position:absolute;inset-inline:0;bottom:-6px;text-align:center;color:var(--muted);font-size:.8rem;font-weight:600;pointer-events:none;}
+.scene-fallback{display:none;position:absolute;inset:0;place-items:center;text-align:center;font-weight:800;font-size:1.3rem;color:var(--ink);}
+.no-webgl canvas,.no-webgl .scene-hint{display:none;}
+.no-webgl .scene-fallback{display:grid;}
+
+/* pulse */
+.pulse{display:grid;grid-template-columns:1.2fr 1fr;border:1.5px solid var(--line);border-radius:var(--r-lg);background:#fff;overflow:hidden;box-shadow:var(--extrude),-22px 30px 50px rgba(13,27,61,.12);transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .18s ease-out;}
+.pulse-main{padding:30px 34px;border-inline-end:1.5px solid var(--line);}
+.pulse-label{color:var(--muted);font-weight:700;font-size:.98rem;}
+.pulse-count{display:flex;align-items:baseline;gap:12px;margin-top:6px;direction:ltr;justify-content:flex-end;}
+.pulse-count b{font-family:var(--font-en);font-weight:900;font-size:clamp(3rem,7vw,4.6rem);line-height:1;background:linear-gradient(95deg,var(--blue),#17b6e6);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.pulse-count span{font-family:var(--font-en);color:var(--muted);font-weight:700;font-size:1.15rem;}
+.bar{height:12px;border-radius:99px;background:#E8EFFB;overflow:hidden;margin-top:18px;box-shadow:inset 0 2px 3px rgba(13,27,61,.12);}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width 1.3s ease;}
+.pulse-sub{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem;margin-top:8px;font-weight:600;}
+.pulse-side{padding:30px 34px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-content:center;background:var(--wash);}
+.mini b{display:block;font-family:var(--font-en);font-weight:900;font-size:2rem;line-height:1.1;color:var(--ink);direction:ltr;text-align:right;}
+.mini span{display:block;color:var(--muted);font-size:.85rem;line-height:1.5;margin-top:4px;font-weight:600;}
+.wall{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px;}
+.wall-empty{color:var(--muted);font-size:.95rem;padding:6px 2px;font-weight:600;}
+.pill{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 12px;border:1.5px solid var(--line);border-radius:999px;background:#fff;font-weight:700;font-size:.9rem;box-shadow:0 3px 0 #dbe5f6;}
+.pill img,.flag{width:24px;height:18px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(13,27,61,.15);}
+.pill em{font-style:normal;font-family:var(--font-en);font-weight:800;color:var(--blue);font-size:.85rem;}
+
+/* sections */
+section{padding:84px 0 0;}
+h2{font-weight:900;font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.35;margin-bottom:12px;}
+.sec-sub{color:var(--muted);max-width:62ch;font-size:1.02rem;font-weight:500;}
+
+.quote{margin-top:80px;padding:38px 0;border-block:2px solid var(--ink);text-align:center;}
+.quote p{font-weight:900;font-size:clamp(1.3rem,3vw,2rem);line-height:1.6;max-width:30ch;margin:0 auto;}
+.quote p span{color:var(--blue);}
+
+/* days as a 3D staircase */
+.stairs{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;align-items:end;margin-top:44px;perspective:1400px;}
+.day{position:relative;padding:22px 18px 22px;border-radius:var(--r-md) var(--r-md) 4px 4px;border:1.5px solid var(--line);border-top:7px solid var(--c);background:linear-gradient(180deg,#fff,var(--wash));display:flex;flex-direction:column;justify-content:flex-end;
+  box-shadow:var(--extrude),-18px 26px 40px rgba(13,27,61,.14);
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .18s ease-out;}
+.day:nth-child(1){--c:var(--c1);min-height:170px;}
+.day:nth-child(2){--c:var(--c2);min-height:215px;}
+.day:nth-child(3){--c:var(--c3);min-height:260px;}
+.day:nth-child(4){--c:var(--c4);min-height:305px;}
+.day:nth-child(5){--c:var(--c5);min-height:350px;background:linear-gradient(180deg,var(--ink-2),var(--ink));color:#fff;box-shadow:-1px 1px 0 #1d3f8a,-2px 2px 0 #1a3a80,-3px 3px 0 #173576,-4px 4px 0 #14306c,-5px 5px 0 #112b62,-6px 6px 0 #0e2658,-18px 26px 40px rgba(13,27,61,.3);}
+.day small{color:var(--muted);font-weight:700;font-size:.82rem;}
+.day h3{font-family:var(--font-en);font-weight:900;font-size:1.3rem;line-height:1.2;margin:4px 0 2px;direction:ltr;text-align:right;color:var(--c);}
+.day .goal{font-weight:800;font-size:.98rem;margin-bottom:10px;}
+.day .deliver{font-size:.85rem;color:var(--muted);border-top:1.5px dashed var(--line);padding-top:9px;line-height:1.55;font-weight:600;}
+.day:nth-child(5) small,.day:nth-child(5) .deliver{color:#b7c9ee;}
+.day:nth-child(5) .deliver{border-top-color:rgba(255,255,255,.25);}
+
+/* who + rules */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.fields{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+.fields span{padding:7px 16px;border-radius:999px;background:var(--wash);border:1.5px solid var(--line);font-weight:700;font-size:.92rem;box-shadow:0 3px 0 #dbe5f6;}
+.note-strong{margin-top:22px;font-weight:900;color:var(--blue);font-size:1.1rem;}
+.rules{margin-top:22px;display:flex;flex-direction:column;}
+.rules div{padding:16px 0;border-bottom:1.5px solid var(--line);}
+.rules div:first-child{padding-top:0;}
+.rules b{display:block;font-size:1.08rem;font-weight:800;}
+.rules p{color:var(--muted);font-size:.95rem;margin-top:2px;}
+
+/* mentors band */
+.band{margin-top:84px;padding:32px 36px;border-radius:var(--r-lg);background:linear-gradient(120deg,var(--ink),var(--ink-2));color:#fff;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  box-shadow:-1px 1px 0 #1d3f8a,-2px 2px 0 #1a3a80,-3px 3px 0 #173576,-4px 4px 0 #14306c,-5px 5px 0 #112b62,-6px 6px 0 #0e2658,-18px 26px 40px rgba(13,27,61,.28);}
+.band h3{font-size:1.4rem;font-weight:900;}
+.band p{color:#c9d8f2;max-width:52ch;margin-top:2px;}
+.band .btn-ghost{box-shadow:0 5px 0 #aebfe0;border-color:#fff;}
+
+/* form */
+.form-shell{margin-top:34px;border:1.5px solid var(--line);border-radius:var(--r-lg);background:#fff;padding:36px;max-width:800px;margin-inline:auto;box-shadow:var(--extrude),-24px 34px 60px rgba(13,27,61,.14);}
+.stepper{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:30px;}
+.stepper div{padding-top:10px;border-top:5px solid #E3EAF6;color:var(--muted);font-weight:700;font-size:.88rem;transition:border-color .3s,color .3s;border-radius:3px;}
+.stepper div.on{border-top-color:var(--blue);color:var(--ink);}
+.stepper div.done{border-top-color:var(--cyan);color:var(--ink);}
+.pane h3{font-size:1.4rem;font-weight:900;margin-bottom:4px;}
+.pane .hint{color:var(--muted);font-size:.95rem;margin-bottom:22px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.field{margin-bottom:16px;position:relative;}
+.field.full{grid-column:1/-1;}
+label,.lbl{display:block;font-weight:800;font-size:.93rem;margin-bottom:6px;color:var(--ink);}
+label small,.lbl small{font-weight:600;color:var(--muted);margin-inline-start:6px;}
+input[type=text],input[type=email],input[type=url],input[type=search],select,textarea,.picker-btn{
+  width:100%;font-family:inherit;font-size:1rem;color:var(--ink);font-weight:500;
+  background:var(--wash);border:1.5px solid var(--line);border-radius:var(--r-sm);
+  padding:12px 14px;transition:border-color .2s, box-shadow .2s, background .2s;
+}
+input::placeholder,textarea::placeholder{color:#8a9ab8;}
+input:focus,select:focus,textarea:focus,.picker-btn:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(20,110,245,.15);}
+input[dir=ltr]{text-align:right;}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23146EF5' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 14px center;padding-left:38px;}
+select option{background:#fff;color:var(--ink);}
+textarea{resize:vertical;min-height:110px;line-height:1.7;}
+[aria-invalid=true]{border-color:var(--err) !important;}
+.err{color:var(--err);font-size:.84rem;margin-top:5px;font-weight:700;}
+.err:empty{display:none;}
+.counter{position:absolute;inset-inline-start:2px;top:2px;color:var(--muted);font-size:.78rem;font-family:var(--font-en);}
+
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
+.role{text-align:right;padding:14px 16px;border-radius:var(--r-md);border:1.5px solid var(--line);background:#fff;color:var(--ink);box-shadow:0 4px 0 #dbe5f6;transition:transform .12s, box-shadow .12s, border-color .2s, background .2s;}
+.role:hover{transform:translateY(-2px);}
+.role b{display:block;font-size:1.02rem;font-weight:800;}
+.role span{display:block;color:var(--muted);font-size:.83rem;line-height:1.5;margin-top:2px;font-weight:500;}
+.role[aria-checked=true]{border-color:var(--blue);background:#EAF2FF;box-shadow:0 4px 0 #9ec2fb;transform:translateY(0);}
+
+.picker-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:right;}
+.picker-btn .ph{color:#8a9ab8;}
+.picker-btn .sel{display:flex;align-items:center;gap:10px;font-weight:700;}
+.picker-panel{position:absolute;inset-inline:0;top:calc(100% - 14px);z-index:20;background:#fff;border:1.5px solid var(--blue);border-radius:var(--r-md);padding:10px;box-shadow:0 24px 60px rgba(13,27,61,.28);}
+.picker-panel input{margin-bottom:8px;}
+.picker-panel ul{list-style:none;max-height:240px;overflow-y:auto;}
+.picker-panel li{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:8px;cursor:pointer;font-weight:700;}
+.picker-panel li:hover,.picker-panel li[aria-selected=true]{background:#EAF2FF;}
+.picker-sep{padding:6px 10px 2px;color:var(--muted);font-size:.78rem;font-weight:800;cursor:default !important;}
+.picker-sep:hover{background:none !important;}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;}
+.chip{padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:.92rem;box-shadow:0 3px 0 #dbe5f6;transition:all .12s;}
+.chip:hover{transform:translateY(-1px);}
+.chip[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 3px 0 var(--blue-deep);}
+
+.check{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;font-size:.95rem;color:var(--ink);font-weight:500;}
+.check input{margin-top:6px;width:18px;height:18px;accent-color:var(--blue);flex:none;}
+.hp{position:absolute;inset-inline-start:-9999px;width:1px;height:1px;opacity:0;}
+
+.nav{display:flex;justify-content:space-between;gap:14px;margin-top:28px;}
+.form-error{margin-top:14px;padding:12px 16px;border-radius:var(--r-sm);background:#FFF0F2;border:1.5px solid #f5b5be;color:#a3182b;font-weight:700;font-size:.93rem;}
+
+.success{text-align:center;padding:14px 0 6px;}
+.success .tick{width:74px;height:74px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:#E8F8EF;border:3px solid var(--ok);box-shadow:0 5px 0 #0c7a3c;}
+.success h3{font-size:1.6rem;font-weight:900;}
+.success p{color:var(--muted);max-width:46ch;margin:8px auto 0;font-weight:500;}
+.code{display:inline-block;margin:22px 0 6px;padding:12px 26px;border-radius:var(--r-md);border:2px dashed var(--blue);background:var(--wash);font-family:var(--font-en);font-weight:900;font-size:1.5rem;letter-spacing:.14em;color:var(--blue);direction:ltr;}
+.next-list{text-align:right;max-width:430px;margin:22px auto 0;color:var(--ink);padding-inline-start:22px;font-weight:500;}
+.next-list li{margin-bottom:6px;}
+.share{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:26px;}
+
+footer{margin-top:96px;padding:30px 0 44px;border-top:2px solid var(--ink);color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-weight:600;}
+footer b{font-family:var(--font-en);color:var(--ink);font-weight:800;}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:6px;}
+  .hero-art{order:-1;max-width:520px;margin:0 auto;width:100%;}
+  .pulse{grid-template-columns:1fr;transform:none;}
+  .pulse-main{border-inline-end:none;border-bottom:1.5px solid var(--line);}
+  .stairs{grid-template-columns:1fr;gap:16px;}
+  .day,.day:nth-child(n){min-height:0;justify-content:flex-start;transform:none;}
+  .split{grid-template-columns:1fr;gap:34px;}
+}
+@media (max-width:620px){
+  .wrap{padding:0 16px;}
+  .form-shell{padding:22px 18px;}
+  .grid2,.roles{grid-template-columns:1fr;}
+  .pulse-main,.pulse-side{padding:22px 20px;}
+  .stepper div{font-size:.78rem;}
+  .top-cta{display:none;}
+  .nav .btn{padding:13px 22px;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;animation-delay:0s !important;transition-duration:.01ms !important;}
+  html{scroll-behavior:auto;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">NS<img src="assets/logo.png" alt="" onerror="this.remove()"></div>
+      <div><b>NextStep AI</b><small>Your Next Step. Smarter with AI.</small></div>
+    </div>
+    <a class="top-cta" href="#register">سجّل الآن</a>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-copy">
+      <h1 class="title"><span class="t-en">NEXTSTEP HACK</span><span class="t-year">2027</span></h1>
+      <p class="lead">هاكاثون الابتكار متعدد التخصصات</p>
+      <p class="tagline">5 Days. Different Minds. One Solution.</p>
+      <p class="tagline-ar">خمسة أيام، عقول مختلفة، حل واحد.</p>
+      <div class="facts">
+        <span>أونلاين بالكامل</span>
+        <span>كل فريق من 5 أعضاء بالضبط</span>
+        <span>مفتوح لكل التخصصات والدول</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#register">سجّل مكانك</a>
+        <a class="btn btn-ghost" href="#how">كيف يعمل الهاكاثون؟</a>
+      </div>
+      <p class="launch-note">موعد الانطلاق يُعلن للمسجّلين أولاً.</p>
+    </div>
+
+    <div class="hero-art" id="heroArt">
+      <canvas id="scene" role="img" aria-label="سلّم ثلاثي الأبعاد من خمس درجات، على كل درجة تخصص مختلف، وكلها تتصل بنواة واحدة تمثل الحل"></canvas>
+      <div class="scene-fallback">5 تخصصات<br>حل واحد</div>
+      <div class="scene-hint">حرّك المؤشر فوق المشهد</div>
+    </div>
+  </div>
+
+  <!-- LIVE PULSE -->
+  <div class="pulse" id="pulse" aria-live="polite">
+    <div class="pulse-main">
+      <div class="pulse-label">انضمّ حتى الآن إلى NEXTSTEP HACK</div>
+      <div class="pulse-count"><span>/ 1000</span><b id="statTotal">0</b></div>
+      <div class="bar"><i id="barFill"></i></div>
+      <div class="pulse-sub"><span id="statState">جارٍ تحميل الأرقام…</span><span id="barPct">0%</span></div>
+    </div>
+    <div class="pulse-side">
+      <div class="mini"><b id="statCountries">0</b><span>دولة مشاركة</span></div>
+      <div class="mini"><b id="statTeams">0</b><span>فريق ممكن تشكيله (5 لكل فريق)</span></div>
+      <div class="mini"><b id="statMentors">0</b><span>مرشد ومحكّم</span></div>
+    </div>
+  </div>
+  <div class="wall" id="countryWall"><div class="wall-empty">لم يسجّل أحد بعد. ارفع علم بلدك أولاً.</div></div>
+
+  <div class="quote">
+    <p>المشكلة لا تحتاج تخصصاً واحداً لحلها، بل تحتاج <span>عقولاً مختلفة</span> تعمل في الاتجاه نفسه.</p>
+  </div>
+
+  <!-- HOW -->
+  <section id="how">
+    <h2>خمسة أيام، كل يوم درجة</h2>
+    <p class="sec-sub">يبدأ كل فريق من مشكلة حقيقية لا من الكود، ويصعد كل يوم خطوة بتسليم رسمي واضح. بنهاية اليوم الخامس يقف الفريق أمام لجنة التحكيم بمنتج يعمل وتوثيق كامل.</p>
+    <div class="stairs">
+      <div class="day"><small>اليوم 1</small><h3>DISCOVER</h3><div class="goal">افهم المشكلة</div><div class="deliver">التسليم: تقرير المشكلة والبحث</div></div>
+      <div class="day"><small>اليوم 2</small><h3>DEFINE</h3><div class="goal">حوّلها إلى حل واضح</div><div class="deliver">التسليم: وثيقة الحل والمتطلبات</div></div>
+      <div class="day"><small>اليوم 3</small><h3>BUILD</h3><div class="goal">ابنِ الحل</div><div class="deliver">التسليم: نموذج أولي يعمل</div></div>
+      <div class="day"><small>اليوم 4</small><h3>TEST</h3><div class="goal">اختبر ما بنيته</div><div class="deliver">التسليم: تقرير الاختبار والتحقق</div></div>
+      <div class="day"><small>اليوم 5</small><h3>IMPACT</h3><div class="goal">قدّمه للعالم</div><div class="deliver">التسليم: العرض والتوثيق والمستودع</div></div>
+    </div>
+  </section>
+
+  <!-- WHO + RULES -->
+  <section>
+    <div class="split">
+      <div>
+        <h2>من يمكنه الانضمام؟</h2>
+        <p class="sec-sub">أي شخص يملك معرفة أو مهارة تضيف قيمة لفريق يحل مشكلة حقيقية، من أي جامعة وأي بلد.</p>
+        <div class="fields">
+          <span>الطب والعلوم الصحية</span><span>الهندسة</span><span>علوم الحاسوب والذكاء الاصطناعي</span><span>إدارة الأعمال</span><span>الاقتصاد</span><span>القانون</span><span>الإعلام والتسويق</span><span>التصميم</span><span>التعليم</span><span>العلوم</span><span>العلوم الإنسانية</span><span>وغيرها</span>
+        </div>
+        <p class="note-strong">لا يُشترط أن تكون مبرمجاً.</p>
+      </div>
+      <div>
+        <h2>قواعد تحميك وتحمي فريقك</h2>
+        <div class="rules">
+          <div><b>فريق من 5 أعضاء بالضبط</b><p>لا أقل ولا أكثر. تسجّل فرداً فنشكّل لك فريقاً متنوعاً، أو تذكر فريقك الجاهز أثناء التسجيل.</p></div>
+          <div><b>تسليم يومي إلزامي</b><p>لكل يوم مهمة رسمية، وتسليمها في موعدها شرط الاستمرار. الاستثناء للحالات الموثقة فقط.</p></div>
+          <div><b>الذكاء الاصطناعي أداة لا مالك</b><p>استخدمه بحرية، لكن اعرف ما تستخدمه، وافصح عنه، وراجع مخرجاته.</p></div>
+          <div><b>أونلاين بالكامل</b><p>تشارك من أي مكان، بجدول موحّد ومرن يراعي ظروف الاتصال.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENTORS BAND -->
+  <div class="band">
+    <div>
+      <h3>خبير أو مختص؟ كن مرشداً أو محكّماً</h3>
+      <p>نبحث عن مرشدين يرافقون الفرق، ومحكّمين من مجالات متنوعة. سجّل بنفس النموذج واختر صفتك.</p>
+    </div>
+    <a class="btn btn-ghost" href="#register" id="mentorCta">سجّل كمرشد أو محكّم</a>
+  </div>
+
+  <!-- REGISTER -->
+  <section id="register">
+    <h2 style="text-align:center">سجّل مكانك</h2>
+    <p class="sec-sub" style="text-align:center;margin-inline:auto">ثلاث خطوات قصيرة. اختر دولتك وارفع علمها بفخر.</p>
+
+    <div class="form-shell">
+      <div id="formArea">
+        <div class="stepper" id="stepper">
+          <div class="on">من أنت</div><div>خبرتك</div><div>كلمة أخيرة</div>
+        </div>
+
+        <form id="regForm" novalidate autocomplete="on">
+          <!-- STEP 1 -->
+          <div class="pane" data-step="1">
+            <h3>من أنت؟</h3>
+            <p class="hint">اختر صفتك ثم عرّفنا بنفسك.</p>
+
+            <div class="roles" role="radiogroup" aria-label="صفة التسجيل">
+              <button type="button" class="role" role="radio" aria-checked="true" data-role="participant"><b>مشارك</b><span>أبني حلاً ضمن فريق من 5</span></button>
+              <button type="button" class="role" role="radio" aria-checked="false" data-role="mentor"><b>مرشد</b><span>أرافق الفرق وأوجّهها</span></button>
+              <button type="button" class="role" role="radio" aria-checked="false" data-role="judge"><b>محكّم</b><span>أقيّم المشاريع النهائية</span></button>
+            </div>
+
+            <div class="grid2">
+              <div class="field full">
+                <label for="f_name">الاسم الكامل</label>
+                <input type="text" id="f_name" name="name" maxlength="120" autocomplete="name" placeholder="كما تريده في الشهادة">
+                <p class="err" data-err="name"></p>
+              </div>
+              <div class="field full">
+                <label for="f_email">البريد الإلكتروني</label>
+                <input type="email" id="f_email" name="email" dir="ltr" maxlength="160" autocomplete="email" placeholder="name@example.com">
+                <p class="err" data-err="email"></p>
+              </div>
+              <div class="field" id="countryField">
+                <span class="lbl" id="countryLbl">الدولة</span>
+                <button type="button" class="picker-btn" id="countryBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="countryLbl countryLabel">
+                  <span class="ph" id="countryLabel">اختر دولتك</span>
+                  <svg width="14" height="9" viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6" fill="none" stroke="#8FD3F4" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+                <div class="picker-panel" id="countryPanel" hidden>
+                  <input type="search" id="countrySearch" placeholder="ابحث عن دولتك" aria-label="ابحث عن دولتك" autocomplete="off">
+                  <ul id="countryList" role="listbox" aria-labelledby="countryLbl"></ul>
+                </div>
+                <p class="err" data-err="country"></p>
+              </div>
+              <div class="field">
+                <label for="f_city">المدينة أو المنطقة <small>اختياري</small></label>
+                <input type="text" id="f_city" name="city" maxlength="80" autocomplete="address-level2" placeholder="مثال: غزة، رام الله، الخرطوم">
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="pane" data-step="2" hidden>
+            <h3>ما الذي تضيفه للفريق؟</h3>
+            <p class="hint">لا يهمنا أن تكون مبرمجاً. يهمنا ما تعرفه وما تجيده.</p>
+
+            <div class="grid2">
+              <div class="field full">
+                <label for="f_inst">الجامعة أو جهة العمل</label>
+                <input type="text" id="f_inst" name="inst" maxlength="140" placeholder="مثال: الكلية الجامعية للعلوم التطبيقية">
+                <p class="err" data-err="inst"></p>
+              </div>
+              <div class="field">
+                <label for="f_spec">التخصص</label>
+                <select id="f_spec" name="spec"></select>
+                <p class="err" data-err="spec"></p>
+              </div>
+              <div class="field">
+                <label for="f_level">وضعك الحالي</label>
+                <select id="f_level" name="level">
+                  <option value="">اختر</option>
+                  <option value="student">طالب</option>
+                  <option value="graduate">خريج</option>
+                  <option value="professional">أعمل في المجال</option>
+                </select>
+                <p class="err" data-err="level"></p>
+              </div>
+              <div class="field full">
+                <label for="f_exp" id="expLbl">مستوى خبرتك</label>
+                <select id="f_exp" name="exp"></select>
+                <p class="err" data-err="exp"></p>
+              </div>
+            </div>
+
+            <div class="field">
+              <span class="lbl" id="skillsLbl">مهاراتك <small>اختر ما ينطبق عليك</small></span>
+              <div class="chips" id="skillChips" role="group" aria-labelledby="skillsLbl"></div>
+              <p class="err" data-err="skills"></p>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="pane" data-step="3" hidden>
+            <h3>كلمة أخيرة</h3>
+            <p class="hint">تساعدنا على تشكيل فريق متوازن وتوجيهك بشكل أفضل.</p>
+
+            <div class="field">
+              <label for="f_bio" id="bioLbl">عرّفنا بنفسك بجملتين <small>اختياري</small></label>
+              <textarea id="f_bio" name="bio" maxlength="600" placeholder="ما الذي يشغلك؟ وما المشكلة التي تتمنى حلّها؟"></textarea>
+              <span class="counter" id="bioCount">0/600</span>
+            </div>
+            <div class="grid2">
+              <div class="field full">
+                <label for="f_linkedin">رابط LinkedIn <small>اختياري</small></label>
+                <input type="url" id="f_linkedin" name="linkedin" dir="ltr" maxlength="200" placeholder="https://www.linkedin.com/in/...">
+                <p class="err" data-err="linkedin"></p>
+              </div>
+              <div class="field full" id="teamField">
+                <label for="f_team">لديك فريق جاهز من 5؟ <small>اختياري</small></label>
+                <textarea id="f_team" name="team" maxlength="400" style="min-height:84px" placeholder="اكتب اسم الفريق وبريد الأعضاء الأربعة الآخرين"></textarea>
+              </div>
+              <div class="field full">
+                <label for="f_heard">كيف عرفت عن الهاكاثون؟ <small>اختياري</small></label>
+                <select id="f_heard" name="heard">
+                  <option value="">اختر</option>
+                  <option value="social">مواقع التواصل الاجتماعي</option>
+                  <option value="friend">صديق أو زميل</option>
+                  <option value="university">جامعتي</option>
+                  <option value="community">مجتمع أو مجموعة تقنية</option>
+                  <option value="other">أخرى</option>
+                </select>
+              </div>
+            </div>
+
+            <input type="text" class="hp" id="f_hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <label class="check"><input type="checkbox" id="f_rules"><span>أوافق على قواعد الهاكاثون: التسليم اليومي الإلزامي، والإفصاح عن استخدام الذكاء الاصطناعي، وتشكيل الفرق من 5 أعضاء.</span></label>
+            <p class="err" data-err="rules" style="margin:-6px 0 10px"></p>
+            <label class="check"><input type="checkbox" id="f_privacy"><span>أوافق على استخدام بياناتي لتنظيم الهاكاثون. يظهر للعامة بلدي فقط، ولا يظهر اسمي أو بريدي.</span></label>
+            <p class="err" data-err="privacy" style="margin:-6px 0 0"></p>
+          </div>
+
+          <p class="form-error" id="formError" hidden></p>
+
+          <div class="nav">
+            <button type="button" class="btn btn-ghost" id="btnBack" hidden>رجوع</button>
+            <span style="flex:1"></span>
+            <button type="button" class="btn btn-primary" id="btnNext">التالي</button>
+            <button type="submit" class="btn btn-primary" id="btnSubmit" hidden>أرسل تسجيلي</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="success" id="successArea" hidden>
+        <div class="tick"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#12a150" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3 id="successTitle">تم تسجيلك في NEXTSTEP HACK 2027</h3>
+        <p>احتفظ برمز التسجيل. سنراسلك على بريدك بموعد الانطلاق وخطوات تشكيل الفرق.</p>
+        <div class="code" id="successCode">—</div>
+        <ol class="next-list">
+          <li>راقب بريدك الإلكتروني (وتفقّد البريد غير الهام).</li>
+          <li>ادعُ زملاءك من تخصصات أخرى، فالفريق المتنوع أقوى.</li>
+          <li>يُعلن عن الفرق والتحديات قبل اليوم الأول.</li>
+        </ol>
+        <div class="share">
+          <button type="button" class="btn btn-primary" id="shareWa">شارك على واتساب</button>
+          <button type="button" class="btn btn-ghost" id="copyLink">انسخ رابط التسجيل</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div><b>NEXTSTEP HACK 2027</b> · هاكاثون الابتكار متعدد التخصصات</div>
+    <div>تنظّمه NextStep AI. Your Next Step. Smarter with AI.</div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ================= CONFIG ================= */
+const SUPABASE_URL = "https://gtpdvlibwtgakjlkjfdx.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_p-ihLx5t2MUq__yjOB65CQ_oTiDTpbU";
+const TARGET = 1000;
+const TEAM_SIZE = 5;
+
+let sb = null;
+try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch (e) { console.error(e); }
+
+/* ================= DATA ================= */
+const COUNTRIES = [
+  ["ps","فلسطين"],["sy","سوريا"],["sd","السودان"],["sa","السعودية"],["eg","مصر"],["jo","الأردن"],["lb","لبنان"],["iq","العراق"],["ye","اليمن"],["ly","ليبيا"],
+  ["tn","تونس"],["dz","الجزائر"],["ma","المغرب"],["mr","موريتانيا"],["so","الصومال"],["dj","جيبوتي"],["km","جزر القمر"],
+  ["ae","الإمارات"],["kw","الكويت"],["qa","قطر"],["bh","البحرين"],["om","عُمان"],
+  ["tr","تركيا"],["my","ماليزيا"],["id","إندونيسيا"],["pk","باكستان"],["in","الهند"],["gb","المملكة المتحدة"],["de","ألمانيا"],["fr","فرنسا"],["nl","هولندا"],["se","السويد"],["no","النرويج"],["es","إسبانيا"],["it","إيطاليا"],["us","الولايات المتحدة"],["ca","كندا"],["au","أستراليا"],["za","جنوب أفريقيا"],["ng","نيجيريا"],["xx","دولة أخرى"]
+];
+const COUNTRY_NAME = Object.fromEntries(COUNTRIES);
+const ARAB_COUNT = 22;
+
+const SPECIALTIES = {
+  medicine:"الطب والعلوم الصحية", engineering:"الهندسة", cs_ai:"علوم الحاسوب والذكاء الاصطناعي",
+  business:"إدارة الأعمال", economics:"الاقتصاد", law:"القانون", media:"الإعلام والتسويق",
+  design:"التصميم", education:"التعليم", science:"العلوم", humanities:"العلوم الإنسانية", other:"تخصص آخر"
+};
+const SKILLS = {
+  programming:"البرمجة", ai:"الذكاء الاصطناعي", data:"تحليل البيانات", ui_ux:"تصميم الواجهات UI/UX",
+  engineering:"الهندسة", health:"الصحة والطب", business:"الأعمال وريادة المشاريع", law:"القانون والتنظيم",
+  media:"التسويق وصناعة المحتوى", writing:"الكتابة والتوثيق", pitching:"العرض والإلقاء", pm:"إدارة المشاريع"
+};
+const EXP_PARTICIPANT = [["","اختر"],["beginner","مبتدئ"],["intermediate","متوسط"],["advanced","متقدم"]];
+const EXP_EXPERT = [["","اختر"],["1-3","من 1 إلى 3 سنوات"],["4-7","من 4 إلى 7 سنوات"],["8+","8 سنوات فأكثر"]];
+
+/* ================= HELPERS ================= */
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const flagImg = (code) => code === "xx" ? "" : `<img class="flag" src="https://flagcdn.com/w40/${esc(code)}.png" alt="" width="24" height="18" loading="lazy" onerror="this.style.visibility='hidden'">`;
+const nf = new Intl.NumberFormat("en-US");
+
+function countTo(el, n) {
+  const from = parseInt(el.dataset.v || "0", 10) || 0;
+  el.dataset.v = n;
+  if (from === n || window.matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = nf.format(n); return; }
+  const t0 = performance.now(), dur = 900;
+  const tick = (t) => {
+    const p = Math.min(1, (t - t0) / dur);
+    el.textContent = nf.format(Math.round(from + (n - from) * (1 - Math.pow(1 - p, 3))));
+    if (p < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+/* ================= LIVE STATS ================= */
+function renderStats(s) {
+  const total = +s.total || 0;
+  countTo($("#statTotal"), total);
+  countTo($("#statCountries"), +s.countries || 0);
+  countTo($("#statTeams"), Math.floor(total / TEAM_SIZE));
+  countTo($("#statMentors"), (+s.mentors || 0) + (+s.judges || 0));
+  const pct = Math.min(100, Math.round((total / TARGET) * 100));
+  $("#barFill").style.width = pct + "%";
+  $("#barPct").textContent = pct + "%";
+  $("#statState").textContent = total >= TARGET ? "اكتمل العدد المستهدف. شكراً لكم!" : `بقي ${nf.format(TARGET - total)} مقعداً للوصول إلى الهدف`;
+
+  const list = Array.isArray(s.by_country) ? s.by_country : [];
+  const wall = $("#countryWall");
+  if (!list.length) {
+    wall.innerHTML = '<div class="wall-empty">لم يسجّل أحد بعد. ارفع علم بلدك أولاً.</div>';
+  } else {
+    wall.innerHTML = list.map((c) => `<span class="pill">${flagImg(c.code)}${esc(COUNTRY_NAME[c.code] || "دولة أخرى")}<em>${nf.format(c.n)}</em></span>`).join("");
+  }
+}
+async function loadStats() {
+  if (!sb) { $("#statState").textContent = "تعذّر تحميل الأرقام"; return; }
+  try {
+    const { data, error } = await sb.rpc("hack_stats");
+    if (error || !data) throw error || new Error("no data");
+    renderStats(data);
+  } catch (e) {
+    console.error(e);
+    $("#statState").textContent = "تعذّر تحميل الأرقام حالياً";
+  }
+}
+loadStats();
+setInterval(loadStats, 60000);
+
+/* ================= FORM STATE ================= */
+const state = { role: "participant", country: null, skills: new Set(), step: 1 };
+
+/* specialty select */
+$("#f_spec").innerHTML = '<option value="">اختر تخصصك</option>' + Object.entries(SPECIALTIES).map(([k, v]) => `<option value="${k}">${v}</option>`).join("");
+/* skills chips */
+$("#skillChips").innerHTML = Object.entries(SKILLS).map(([k, v]) => `<button type="button" class="chip" aria-pressed="false" data-skill="${k}">${v}</button>`).join("");
+$("#skillChips").addEventListener("click", (e) => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  const k = b.dataset.skill, on = !state.skills.has(k);
+  on ? state.skills.add(k) : state.skills.delete(k);
+  b.setAttribute("aria-pressed", on);
+  setErr("skills", "");
+});
+
+/* roles */
+function setRole(role) {
+  state.role = role;
+  $$(".role").forEach((b) => b.setAttribute("aria-checked", b.dataset.role === role));
+  const expert = role !== "participant";
+  const opts = expert ? EXP_EXPERT : EXP_PARTICIPANT;
+  $("#f_exp").innerHTML = opts.map(([v, t]) => `<option value="${v}">${t}</option>`).join("");
+  $("#expLbl").textContent = expert ? "سنوات خبرتك في مجالك" : "مستوى خبرتك";
+  $("#teamField").hidden = expert;
+  $("#bioLbl").innerHTML = expert ? 'في أي مجال تستطيع إفادة الفرق؟ <small>اختياري</small>' : 'عرّفنا بنفسك بجملتين <small>اختياري</small>';
+}
+$$(".role").forEach((b) => b.addEventListener("click", () => setRole(b.dataset.role)));
+setRole("participant");
+$("#mentorCta").addEventListener("click", () => setRole("mentor"));
+
+/* bio counter */
+$("#f_bio").addEventListener("input", (e) => { $("#bioCount").textContent = e.target.value.length + "/600"; });
+
+/* ================= COUNTRY PICKER ================= */
+const panel = $("#countryPanel"), btn = $("#countryBtn"), search = $("#countrySearch"), listEl = $("#countryList");
+function renderCountries(q) {
+  q = (q || "").trim();
+  const items = COUNTRIES.map((c, i) => ({ code: c[0], name: c[1], arab: i < ARAB_COUNT })).filter((c) => !q || c.name.includes(q));
+  let html = "", lastGroup = null;
+  items.forEach((c) => {
+    const group = q ? null : (c.arab ? "الدول العربية" : "دول أخرى");
+    if (group && group !== lastGroup) { html += `<li class="picker-sep" role="presentation">${group}</li>`; lastGroup = group; }
+    html += `<li role="option" tabindex="-1" data-code="${c.code}" aria-selected="${state.country === c.code}">${flagImg(c.code)}<span>${esc(c.name)}</span></li>`;
+  });
+  listEl.innerHTML = html || '<li class="picker-sep" role="presentation">لا نتائج. جرّب كتابة أخرى.</li>';
+}
+function openPicker(open) {
+  panel.hidden = !open;
+  btn.setAttribute("aria-expanded", open);
+  if (open) { search.value = ""; renderCountries(""); setTimeout(() => search.focus(), 0); }
+}
+btn.addEventListener("click", () => openPicker(panel.hidden));
+search.addEventListener("input", () => renderCountries(search.value));
+listEl.addEventListener("click", (e) => {
+  const li = e.target.closest("li[data-code]"); if (!li) return;
+  state.country = li.dataset.code;
+  $("#countryLabel").className = "sel";
+  $("#countryLabel").innerHTML = `${flagImg(state.country)}<span>${esc(COUNTRY_NAME[state.country])}</span>`;
+  setErr("country", "");
+  openPicker(false);
+  btn.focus();
+});
+document.addEventListener("click", (e) => { if (!panel.hidden && !e.target.closest("#countryField")) openPicker(false); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) { openPicker(false); btn.focus(); } });
+renderCountries("");
+
+/* ================= VALIDATION ================= */
+function setErr(key, msg) {
+  const el = document.querySelector(`[data-err="${key}"]`);
+  if (el) el.textContent = msg || "";
+  const input = document.getElementById("f_" + key);
+  if (input) input.setAttribute("aria-invalid", msg ? "true" : "false");
+}
+const val = (id) => document.getElementById(id).value.trim();
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+function validate(step) {
+  let ok = true;
+  const fail = (k, m) => { setErr(k, m); ok = false; };
+  if (step === 1) {
+    val("f_name").length < 3 ? fail("name", "اكتب اسمك الكامل (3 أحرف على الأقل).") : setErr("name");
+    EMAIL_RE.test(val("f_email")) ? setErr("email") : fail("email", "اكتب بريداً إلكترونياً صحيحاً، مثل name@example.com.");
+    state.country ? setErr("country") : fail("country", "اختر دولتك من القائمة.");
+  }
+  if (step === 2) {
+    val("f_inst").length < 2 ? fail("inst", "اكتب اسم جامعتك أو جهة عملك.") : setErr("inst");
+    val("f_spec") ? setErr("spec") : fail("spec", "اختر تخصصك.");
+    val("f_level") ? setErr("level") : fail("level", "اختر وضعك الحالي.");
+    val("f_exp") ? setErr("exp") : fail("exp", "اختر مستوى خبرتك.");
+    state.skills.size ? setErr("skills") : fail("skills", "اختر مهارة واحدة على الأقل.");
+  }
+  if (step === 3) {
+    const li = val("f_linkedin");
+    if (li && !/^https?:\/\/.+\..+/.test(li)) fail("linkedin", "الرابط غير صحيح. ابدأه بـ https://"); else setErr("linkedin");
+    $("#f_rules").checked ? setErr("rules") : fail("rules", "الموافقة على القواعد مطلوبة للتسجيل.");
+    $("#f_privacy").checked ? setErr("privacy") : fail("privacy", "الموافقة على استخدام البيانات مطلوبة للتسجيل.");
+  }
+  return ok;
+}
+
+/* ================= STEPS ================= */
+function showStep(n) {
+  state.step = n;
+  $$(".pane").forEach((p) => (p.hidden = +p.dataset.step !== n));
+  $$("#stepper div").forEach((d, i) => { d.className = i + 1 === n ? "on" : i + 1 < n ? "done" : ""; });
+  $("#btnBack").hidden = n === 1;
+  $("#btnNext").hidden = n === 3;
+  $("#btnSubmit").hidden = n !== 3;
+  $("#formError").hidden = true;
+  $("#stepper").scrollIntoView({ behavior: "smooth", block: "center" });
+}
+$("#btnNext").addEventListener("click", () => { if (validate(state.step)) showStep(state.step + 1); });
+$("#btnBack").addEventListener("click", () => showStep(state.step - 1));
+
+/* ================= SUBMIT ================= */
+function uuid() {
+  if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => { const r = Math.random() * 16 | 0; return (c === "x" ? r : (r & 3 | 8)).toString(16); });
+}
+function showError(msg) { const e = $("#formError"); e.textContent = msg; e.hidden = false; e.scrollIntoView({ behavior: "smooth", block: "center" }); }
+
+$("#regForm").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  if (!validate(1)) return showStep(1);
+  if (!validate(2)) return showStep(2);
+  if (!validate(3)) return;
+
+  const id = uuid();
+  const code = "NSH-" + id.replace(/-/g, "").slice(0, 6).toUpperCase();
+
+  if ($("#f_hp").value) { return finish(code); } /* honeypot: bots */
+
+  if (!sb) return showError("تعذّر الاتصال بالخادم. حدّث الصفحة وحاول مرة أخرى.");
+
+  const row = {
+    id,
+    join_as: state.role,
+    full_name: val("f_name"),
+    email: val("f_email").toLowerCase(),
+    country_code: state.country,
+    city: val("f_city") || null,
+    institution: val("f_inst"),
+    specialty: val("f_spec"),
+    education_level: val("f_level"),
+    experience: val("f_exp"),
+    skills: Array.from(state.skills),
+    bio: val("f_bio") || null,
+    linkedin_url: val("f_linkedin") || null,
+    team_request: state.role === "participant" ? (val("f_team") || null) : null,
+    heard_from: val("f_heard") || null,
+    agreed_rules: true
+  };
+
+  const submit = $("#btnSubmit");
+  submit.disabled = true; submit.textContent = "جارٍ الإرسال…";
+  try {
+    const { error } = await sb.from("hack_participants").insert(row);
+    if (error) {
+      if (error.code === "23505") { showError("هذا البريد مسجّل لدينا مسبقاً. إن كنت تظن أن هذا خطأ، تواصل معنا."); }
+      else { console.error(error); showError("حدث خطأ أثناء الإرسال. تحقّق من اتصالك وحاول مرة أخرى."); }
+      return;
+    }
+    finish(code);
+    loadStats();
+  } catch (e) {
+    console.error(e);
+    showError("حدث خطأ غير متوقع. حاول مرة أخرى بعد قليل.");
+  } finally {
+    submit.disabled = false; submit.textContent = "أرسل تسجيلي";
+  }
+});
+
+function finish(code) {
+  $("#formArea").hidden = true;
+  $("#successArea").hidden = false;
+  $("#successCode").textContent = code;
+  const titles = { participant: "تم تسجيلك في NEXTSTEP HACK 2027", mentor: "شكراً لانضمامك كمرشد", judge: "شكراً لانضمامك كمحكّم" };
+  $("#successTitle").textContent = titles[state.role];
+  $("#successArea").scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+/* share */
+const SHARE_URL = location.href.split("#")[0];
+const SHARE_TEXT = "انضممت إلى NEXTSTEP HACK 2027، هاكاثون ابتكار أونلاين متعدد التخصصات من NextStep AI. خمسة أيام، عقول مختلفة، حل واحد. سجّل معنا:";
+$("#shareWa").addEventListener("click", () => window.open("https://wa.me/?text=" + encodeURIComponent(SHARE_TEXT + " " + SHARE_URL), "_blank", "noopener"));
+$("#copyLink").addEventListener("click", async (e) => {
+  try { await navigator.clipboard.writeText(SHARE_URL); e.target.textContent = "تم النسخ"; }
+  catch (_) { e.target.textContent = SHARE_URL; }
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ================= 3D HERO: five minds climb five steps toward one solution ================= */
+(function () {
+  const canvas = document.getElementById('scene');
+  if (!canvas || !window.THREE) { document.getElementById('heroArt')?.classList.add('no-webgl'); return; }
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); }
+  catch (e) { document.getElementById('heroArt').classList.add('no-webgl'); return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+  const base = new THREE.Vector3(10.5, 7.6, 13.8);
+  const target = new THREE.Vector3(-0.2, 3.2, 0);
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xb8d0ff, 0.95));
+  const sun = new THREE.DirectionalLight(0xffffff, 1.15);
+  sun.position.set(7, 12, 8); sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024);
+  Object.assign(sun.shadow.camera, { left: -11, right: 11, top: 11, bottom: -11, near: 1, far: 40 });
+  sun.shadow.radius = 4; scene.add(sun);
+  const rim = new THREE.PointLight(0x35d6f5, 0.9, 32); rim.position.set(-7, 5, 7); scene.add(rim);
+
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.ShadowMaterial({ opacity: 0.17 }));
+  ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+
+  const root = new THREE.Group(); scene.add(root);
+
+  const DISC = [
+    { name: 'الطب',     c: 0xFF5C7A },
+    { name: 'الهندسة',  c: 0x146EF5 },
+    { name: 'القانون',  c: 0x7C5CFF },
+    { name: 'التصميم',  c: 0xFFB020 },
+    { name: 'الأعمال',  c: 0x1FC8A0 }
+  ];
+
+  function rr(ctx, x, y, w, h, r) {
+    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  function labelTex(text, o) {
+    o = Object.assign({ w: 256, h: 96, font: '800 46px Cairo, sans-serif', fg: '#0D1B3D', pill: true, border: '#DDE6F4' }, o || {});
+    const c = document.createElement('canvas'); c.width = o.w; c.height = o.h;
+    const x = c.getContext('2d');
+    if (o.pill) { x.fillStyle = 'rgba(255,255,255,.97)'; rr(x, 4, 4, o.w - 8, o.h - 8, (o.h - 8) / 2); x.fill(); x.lineWidth = 4; x.strokeStyle = o.border; x.stroke(); }
+    x.fillStyle = o.fg; x.font = o.font; x.textAlign = 'center'; x.textBaseline = 'middle';
+    x.fillText(text, o.w / 2, o.h / 2 + 3);
+    const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; t.anisotropy = 4; return t;
+  }
+
+  const SW = 2.15, SD = 3.0, GAP = 0.12;
+  const orbs = [], pulses = [], links = [], floaters = [];
+  let core, halo, coreInner, coreCage;
+
+  function build() {
+    /* staircase: Day 1 on the right (lowest), Day 5 on the left (highest) */
+    const tops = [];
+    for (let i = 0; i < 5; i++) {
+      const h = 0.8 + i * 0.78, x = (2 - i) * (SW + GAP);
+      const body = new THREE.Mesh(new THREE.BoxGeometry(SW, h, SD), new THREE.MeshStandardMaterial({ color: 0xf4f8ff, roughness: 0.45, metalness: 0.02 }));
+      body.position.set(x, h / 2, 0); body.castShadow = body.receiveShadow = true; root.add(body);
+      const cap = new THREE.Mesh(new THREE.BoxGeometry(SW + 0.05, 0.14, SD + 0.05), new THREE.MeshStandardMaterial({ color: DISC[i].c, roughness: 0.28 }));
+      cap.position.set(x, h + 0.07, 0); cap.castShadow = cap.receiveShadow = true; root.add(cap);
+      const lab = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.375),
+        new THREE.MeshBasicMaterial({ map: labelTex('DAY ' + (i + 1), { w: 512, h: 128, font: '900 70px Montserrat, sans-serif', pill: false, fg: '#0D1B3D' }), transparent: true }));
+      lab.position.set(x, Math.min(h * 0.5, h - 0.28), SD / 2 + 0.012); root.add(lab);
+      tops.push({ x, y: h + 0.14 });
+    }
+
+    /* the five minds */
+    const corePos = new THREE.Vector3(-3.7, 7.1, 0);
+    tops.forEach((t, i) => {
+      const m = new THREE.Mesh(new THREE.SphereGeometry(0.46, 48, 48),
+        new THREE.MeshPhysicalMaterial({ color: DISC[i].c, roughness: 0.12, metalness: 0.05, clearcoat: 1, clearcoatRoughness: 0.08 }));
+      m.position.set(t.x, t.y + 0.95, 0); m.castShadow = true; root.add(m);
+      const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: labelTex(DISC[i].name), transparent: true }));
+      s.scale.set(1.55, 0.58, 1); s.position.set(t.x, t.y + 1.95, 0.2); root.add(s);
+      orbs.push({ mesh: m, label: s, y0: t.y + 0.95, ph: i * 1.3 });
+
+      const start = new THREE.Vector3(t.x, t.y + 1.5, 0);
+      const mid = new THREE.Vector3((t.x + corePos.x) / 2, Math.max(t.y, corePos.y) + 1.4, i % 2 ? 0.9 : -0.9);
+      const curve = new THREE.QuadraticBezierCurve3(start, mid, corePos.clone());
+      const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 56, 0.028, 8, false),
+        new THREE.MeshBasicMaterial({ color: DISC[i].c, transparent: true, opacity: 0.55 }));
+      root.add(tube);
+      const p = new THREE.Mesh(new THREE.SphereGeometry(0.1, 16, 16), new THREE.MeshBasicMaterial({ color: DISC[i].c }));
+      root.add(p); pulses.push({ mesh: p, curve, off: i * 0.2 });
+    });
+
+    /* the one solution */
+    core = new THREE.Group(); core.position.copy(corePos); root.add(core);
+    coreInner = new THREE.Mesh(new THREE.SphereGeometry(0.55, 40, 40),
+      new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0x35d6f5, emissiveIntensity: 0.95, roughness: 0.2 }));
+    core.add(coreInner);
+    const ico = new THREE.IcosahedronGeometry(1.05, 1);
+    coreCage = new THREE.Group();
+    coreCage.add(new THREE.Mesh(ico, new THREE.MeshPhysicalMaterial({ color: 0x146EF5, transparent: true, opacity: 0.16, roughness: 0.1, clearcoat: 1 })));
+    coreCage.add(new THREE.LineSegments(new THREE.EdgesGeometry(ico), new THREE.LineBasicMaterial({ color: 0x146EF5 })));
+    core.add(coreCage);
+    const gc = document.createElement('canvas'); gc.width = gc.height = 128;
+    const gx = gc.getContext('2d'), g = gx.createRadialGradient(64, 64, 4, 64, 64, 64);
+    g.addColorStop(0, 'rgba(53,214,245,.65)'); g.addColorStop(1, 'rgba(53,214,245,0)');
+    gx.fillStyle = g; gx.fillRect(0, 0, 128, 128);
+    halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(gc), transparent: true, depthWrite: false }));
+    halo.scale.set(4.2, 4.2, 1); core.add(halo);
+    const cl = new THREE.Sprite(new THREE.SpriteMaterial({ map: labelTex('حل واحد', { w: 300, h: 100, font: '900 50px Cairo, sans-serif', fg: '#ffffff', border: '#0D1B3D' }), transparent: true }));
+    /* dark pill for the core label */
+    const dc = document.createElement('canvas'); dc.width = 300; dc.height = 100; const dx = dc.getContext('2d');
+    dx.fillStyle = '#0D1B3D'; rr(dx, 4, 4, 292, 92, 46); dx.fill();
+    dx.fillStyle = '#fff'; dx.font = '900 50px Cairo, sans-serif'; dx.textAlign = 'center'; dx.textBaseline = 'middle'; dx.fillText('حل واحد', 150, 53);
+    const dt = new THREE.CanvasTexture(dc); dt.encoding = THREE.sRGBEncoding;
+    cl.material.map = dt; cl.scale.set(1.9, 0.63, 1); cl.position.set(0, 1.75, 0); core.add(cl);
+
+    /* ambient floating shards */
+    const cols = [0x35d6f5, 0x146EF5, 0xBFE6FA, 0xFFB020, 0xFF5C7A, 0x7C5CFF, 0x1FC8A0];
+    for (let i = 0; i < 16; i++) {
+      const g2 = i % 2 ? new THREE.OctahedronGeometry(0.16 + Math.random() * 0.1) : new THREE.BoxGeometry(0.2, 0.2, 0.2);
+      const m = new THREE.Mesh(g2, new THREE.MeshStandardMaterial({ color: cols[i % cols.length], roughness: 0.35 }));
+      m.position.set((Math.random() - 0.5) * 13, 1.5 + Math.random() * 7, (Math.random() - 0.3) * 6);
+      m.castShadow = true; root.add(m);
+      floaters.push({ mesh: m, s: 0.3 + Math.random() * 0.7, ph: Math.random() * 6, y0: m.position.y });
+    }
+  }
+
+  /* sizing */
+  function resize() {
+    const box = canvas.parentElement.getBoundingClientRect();
+    const w = Math.max(280, box.width), h = Math.max(260, box.height);
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    const k = Math.max(1, 1.02 / camera.aspect);
+    camera.position.copy(base).multiplyScalar(k);
+    camera.lookAt(target);
+    camera.updateProjectionMatrix();
+    if (reduce) draw(0);
+  }
+
+  /* interaction */
+  let tRY = 0, tRX = 0;
+  canvas.addEventListener('pointermove', (e) => {
+    const r = canvas.getBoundingClientRect();
+    tRY = ((e.clientX - r.left) / r.width - 0.5) * 0.8;
+    tRX = ((e.clientY - r.top) / r.height - 0.5) * 0.16;
+  });
+  canvas.addEventListener('pointerleave', () => { tRY = 0; tRX = 0; });
+
+  function draw(t) {
+    const sway = reduce ? 0 : Math.sin(t * 0.35) * 0.1;
+    root.rotation.y += ((tRY + sway) - root.rotation.y) * 0.06;
+    root.rotation.x += (tRX - root.rotation.x) * 0.06;
+    orbs.forEach((o, i) => {
+      const y = o.y0 + (reduce ? 0 : Math.sin(t * 1.5 + o.ph) * 0.13);
+      o.mesh.position.y = y; o.label.position.y = y + 1.0;
+    });
+    pulses.forEach((p) => { p.mesh.position.copy(p.curve.getPoint(((t * 0.22) + p.off) % 1)); });
+    if (core) {
+      coreCage.rotation.y = t * 0.5; coreCage.rotation.x = t * 0.3;
+      const s = 1 + Math.sin(t * 2) * 0.05; coreInner.scale.setScalar(s); halo.scale.setScalar(4.2 + Math.sin(t * 2) * 0.3);
+      core.position.y = 7.1 + Math.sin(t * 1.1) * 0.12;
+    }
+    floaters.forEach((f) => { f.mesh.rotation.x = t * f.s; f.mesh.rotation.y = t * f.s * 0.8; f.mesh.position.y = f.y0 + Math.sin(t * f.s + f.ph) * 0.25; });
+    renderer.render(scene, camera);
+  }
+
+  let visible = true, last = 0;
+  function loop(ms) { requestAnimationFrame(loop); if (!visible) return; draw(ms / 1000); }
+
+  const ready = (document.fonts && document.fonts.load)
+    ? Promise.all([document.fonts.load('800 40px Cairo', 'الطب'), document.fonts.load('900 40px Montserrat', 'DAY 1')]).catch(() => {})
+    : Promise.resolve();
+  ready.then(() => {
+    build(); resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas.parentElement); else window.addEventListener('resize', resize);
+    if ('IntersectionObserver' in window) new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(canvas);
+    if (!reduce) requestAnimationFrame(loop);
+  });
+})();
+
+/* ================= subtle 3D tilt on cards (mouse only) ================= */
+(function () {
+  if (window.matchMedia('(hover: none)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.day, .pulse').forEach((el) => {
+    const amp = el.classList.contains('pulse') ? 3 : 9;
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--ry', (((e.clientX - r.left) / r.width - 0.5) * amp).toFixed(2) + 'deg');
+      el.style.setProperty('--rx', ((0.5 - (e.clientY - r.top) / r.height) * amp).toFixed(2) + 'deg');
+    });
+    el.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+  });
+})();
+</script>
+</body>
+</html>

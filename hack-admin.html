@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>لوحة الإدارة — NEXTSTEP HACK 2027</title>
+<meta name="theme-color" content="#0D1B3D">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0D1B3D; --ink-2:#14306e; --blue:#146EF5; --blue-deep:#0B3FA0; --cyan:#35D6F5;
+  --wash:#F3F8FF; --line:#DDE6F4; --muted:#5A6B8C; --ok:#12a150; --err:#d6293e; --warn:#c77700;
+  --c1:#FF5C7A; --c2:#146EF5; --c3:#7C5CFF; --c4:#FFB020; --c5:#1FC8A0;
+  --font-ar:'Cairo',system-ui,sans-serif; --font-en:'Montserrat','Cairo',sans-serif;
+  --r-lg:22px; --r-md:14px; --r-sm:10px;
+  --extrude:-1px 1px 0 #d3e2fb,-2px 2px 0 #cadcf9,-3px 3px 0 #c1d6f8,-4px 4px 0 #b8cff6,-5px 5px 0 #afc8f4;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-ar);color:var(--ink);line-height:1.7;background:#fff;min-height:100vh;}
+button{font-family:inherit;cursor:pointer;}
+[hidden]{display:none !important;}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:8px;}
+a{color:var(--blue);text-decoration:none;}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:.92rem;padding:10px 20px;border-radius:999px;border:none;transition:transform .12s, box-shadow .12s, opacity .2s;white-space:nowrap;}
+.btn-primary{background:linear-gradient(180deg,#3b8bff,var(--blue));color:#fff;box-shadow:0 5px 0 var(--blue-deep),0 12px 20px rgba(20,110,245,.3);}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-primary:active{transform:translateY(4px);box-shadow:0 1px 0 var(--blue-deep);}
+.btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);box-shadow:0 4px 0 #d5e0f2;}
+.btn-ghost:hover{transform:translateY(-2px);}
+.btn-ghost:active{transform:translateY(3px);box-shadow:0 1px 0 #d5e0f2;}
+.btn-danger{background:#fff;color:var(--err);border:1.5px solid #f2b6bf;box-shadow:0 4px 0 #f2c9d0;}
+.btn-ok{background:linear-gradient(180deg,#27c273,var(--ok));color:#fff;box-shadow:0 4px 0 #0c7a3c;}
+.btn-warn{background:#fff;color:var(--warn);border:1.5px solid #f3d08e;box-shadow:0 4px 0 #f3dfb4;}
+.btn-sm{padding:7px 14px;font-size:.84rem;}
+.btn[disabled]{opacity:.55;cursor:not-allowed;transform:none;}
+
+/* ---------- login ---------- */
+.login{min-height:100vh;display:grid;place-items:center;padding:24px;
+  background:radial-gradient(900px 500px at 85% -5%,rgba(20,110,245,.16),transparent 62%),radial-gradient(700px 480px at 0% 100%,rgba(53,214,245,.2),transparent 60%),#fff;}
+.login-card{width:100%;max-width:430px;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);padding:36px 32px;box-shadow:var(--extrude),-22px 30px 50px rgba(13,27,61,.14);}
+.logo-row{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
+.mark{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;font-family:var(--font-en);font-weight:800;color:#fff;font-size:.9rem;position:relative;overflow:hidden;box-shadow:0 4px 0 var(--blue-deep);flex:none;}
+.mark img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;}
+.logo-row b{display:block;font-family:var(--font-en);font-weight:900;line-height:1.2;}
+.logo-row small{color:var(--muted);font-size:.8rem;display:block;}
+.login-card h1{font-size:1.5rem;font-weight:900;margin-bottom:4px;}
+.login-card p.sub{color:var(--muted);font-size:.93rem;margin-bottom:22px;}
+.fld{margin-bottom:16px;}
+.fld label{display:block;font-weight:800;font-size:.9rem;margin-bottom:6px;}
+.in,select.in,textarea.in{width:100%;font-family:inherit;font-size:.97rem;color:var(--ink);font-weight:500;background:var(--wash);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:10px 14px;transition:border-color .2s,box-shadow .2s,background .2s;}
+.in:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(20,110,245,.15);}
+select.in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23146EF5' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 12px center;padding-left:34px;}
+textarea.in{resize:vertical;min-height:90px;line-height:1.7;}
+.login-err{margin-top:14px;padding:10px 14px;border-radius:var(--r-sm);background:#FFF0F2;border:1.5px solid #f5b5be;color:#a3182b;font-weight:700;font-size:.9rem;}
+
+/* ---------- app shell ---------- */
+.app{display:grid;grid-template-columns:268px 1fr;min-height:100vh;}
+.side{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,var(--ink-2),var(--ink));color:#fff;padding:24px 18px;display:flex;flex-direction:column;gap:6px;
+  box-shadow:-6px 0 0 #0a1530, -20px 0 40px rgba(13,27,61,.25);z-index:5;}
+.side .logo-row{margin-bottom:18px;}
+.side .logo-row small{color:#9db4e0;}
+.nav-btn{display:flex;align-items:center;gap:12px;width:100%;text-align:right;color:#c6d6f5;background:transparent;border:none;padding:12px 14px;border-radius:var(--r-md);font-weight:700;font-size:.97rem;transition:background .15s,color .15s,transform .12s;}
+.nav-btn svg{width:20px;height:20px;flex:none;}
+.nav-btn:hover{background:rgba(255,255,255,.08);color:#fff;}
+.nav-btn.on{background:#fff;color:var(--ink);box-shadow:0 4px 0 #9fb8e8,0 10px 18px rgba(0,0,0,.25);}
+.nav-btn .badge-n{margin-inline-start:auto;font-family:var(--font-en);font-weight:800;font-size:.75rem;background:var(--c4);color:var(--ink);border-radius:999px;padding:1px 9px;}
+.side-foot{margin-top:auto;border-top:1px solid rgba(255,255,255,.14);padding-top:16px;font-size:.82rem;color:#9db4e0;}
+.side-foot b{display:block;color:#fff;font-family:var(--font-en);font-size:.82rem;word-break:break-all;margin-bottom:8px;}
+
+.main{padding:28px 34px 70px;min-width:0;
+  background:radial-gradient(900px 500px at 90% -10%,rgba(20,110,245,.09),transparent 60%),radial-gradient(700px 420px at 0% 0%,rgba(53,214,245,.1),transparent 60%),#fff;}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:26px;}
+.head h1{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;line-height:1.3;}
+.head p{color:var(--muted);font-size:.92rem;font-weight:600;}
+.head-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+
+/* ---------- cards / kpis ---------- */
+.card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);padding:22px 24px;box-shadow:var(--extrude),-16px 22px 34px rgba(13,27,61,.09);}
+.card h3{font-size:1.05rem;font-weight:900;margin-bottom:14px;}
+.card h3 small{font-weight:600;color:var(--muted);margin-inline-start:8px;font-size:.82rem;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:18px;margin-bottom:22px;}
+.kpi{position:relative;background:#fff;border:1.5px solid var(--line);border-top:6px solid var(--k,var(--blue));border-radius:var(--r-md);padding:16px 18px 14px;box-shadow:var(--extrude),-14px 20px 30px rgba(13,27,61,.09);transition:transform .15s;}
+.kpi:hover{transform:translateY(-3px);}
+.kpi b{display:block;font-family:var(--font-en);font-weight:900;font-size:2.1rem;line-height:1.1;direction:ltr;text-align:right;}
+.kpi span{display:block;color:var(--muted);font-weight:700;font-size:.88rem;margin-top:2px;}
+.kpi em{display:block;font-style:normal;color:var(--muted);font-size:.76rem;font-weight:600;margin-top:2px;}
+
+.grid-2{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;margin-bottom:22px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px;}
+.alert{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;padding:16px 22px;border-radius:var(--r-lg);background:linear-gradient(120deg,var(--ink),var(--ink-2));color:#fff;box-shadow:0 6px 0 #091227,0 18px 30px rgba(13,27,61,.25);}
+.alert b{font-size:1.1rem;font-weight:900;}
+.alert span{color:#c3d3f3;font-size:.92rem;display:block;}
+
+.spark{display:flex;align-items:flex-end;gap:6px;height:190px;padding-top:10px;}
+.spark .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:6px;min-width:0;}
+.spark .col i{display:block;width:100%;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,var(--cyan),var(--blue));min-height:3px;box-shadow:-2px 2px 0 #b8cff6;transition:height .6s ease;}
+.spark .col span{font-family:var(--font-en);font-size:.66rem;color:var(--muted);font-weight:700;}
+.spark .col.today span{color:var(--blue);}
+
+.donut-wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
+.donut{width:150px;height:150px;border-radius:50%;display:grid;place-items:center;flex:none;box-shadow:-5px 6px 0 #c1d6f8,-14px 18px 26px rgba(13,27,61,.15);}
+.donut div{width:92px;height:92px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center;line-height:1.1;box-shadow:inset 0 3px 6px rgba(13,27,61,.12);}
+.donut b{font-family:var(--font-en);font-weight:900;font-size:1.6rem;display:block;}
+.donut small{color:var(--muted);font-weight:700;font-size:.72rem;}
+.legend{display:flex;flex-direction:column;gap:8px;font-weight:700;font-size:.9rem;}
+.legend span{display:flex;align-items:center;gap:9px;}
+.legend i{width:12px;height:12px;border-radius:4px;display:inline-block;}
+.legend em{font-style:normal;font-family:var(--font-en);color:var(--muted);margin-inline-start:6px;}
+
+.hbars{display:flex;flex-direction:column;gap:11px;}
+.hrow{display:grid;grid-template-columns:150px 1fr 38px;align-items:center;gap:12px;font-weight:700;font-size:.88rem;}
+.hrow .nm{display:flex;align-items:center;gap:9px;min-width:0;}
+.hrow .nm span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hrow .tr{height:11px;border-radius:99px;background:#E8EFFB;overflow:hidden;box-shadow:inset 0 2px 3px rgba(13,27,61,.1);}
+.hrow .tr i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--cyan));}
+.hrow b{font-family:var(--font-en);font-weight:800;text-align:left;direction:ltr;}
+.flag{width:24px;height:18px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(13,27,61,.15);flex:none;}
+.empty{color:var(--muted);font-weight:600;text-align:center;padding:26px 10px;}
+
+/* ---------- toolbar / table ---------- */
+.toolbar{display:grid;grid-template-columns:2fr repeat(5,1fr);gap:12px;margin-bottom:14px;}
+.toolbar .in{padding:9px 12px;font-size:.9rem;}
+.bulk{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;margin-bottom:14px;border-radius:var(--r-md);background:#EAF2FF;border:1.5px solid #9ec2fb;font-weight:800;}
+.bulk .sp{flex:1;}
+.table-card{padding:0;overflow:hidden;}
+.tbl-scroll{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;min-width:900px;}
+th{position:sticky;top:0;background:var(--wash);text-align:right;font-weight:800;font-size:.82rem;color:var(--muted);padding:12px 14px;border-bottom:1.5px solid var(--line);white-space:nowrap;}
+td{padding:11px 14px;border-bottom:1px solid #EAF0FA;font-size:.9rem;vertical-align:middle;}
+tbody tr{cursor:pointer;transition:background .12s;}
+tbody tr:hover{background:#F6FAFF;}
+td small{display:block;color:var(--muted);font-family:var(--font-en);font-size:.76rem;direction:ltr;text-align:right;}
+td b{font-weight:800;}
+td .cn{display:flex;align-items:center;gap:8px;font-weight:600;}
+input[type=checkbox]{width:17px;height:17px;accent-color:var(--blue);cursor:pointer;}
+.bd{display:inline-block;padding:3px 12px;border-radius:999px;font-weight:800;font-size:.78rem;border:1.5px solid;white-space:nowrap;}
+.bd.pending{color:var(--warn);background:#FFF6E3;border-color:#f3d08e;}
+.bd.confirmed{color:#0c7a3c;background:#E8F8EF;border-color:#9bdcb7;}
+.bd.waitlist{color:var(--blue-deep);background:#EAF2FF;border-color:#9ec2fb;}
+.bd.rejected{color:#a3182b;background:#FFF0F2;border-color:#f5b5be;}
+.bd.role{color:var(--ink);background:var(--wash);border-color:var(--line);}
+.pager{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-top:1.5px solid var(--line);flex-wrap:wrap;color:var(--muted);font-weight:700;font-size:.88rem;}
+.pager .btns{display:flex;gap:8px;align-items:center;}
+.pager .pn{font-family:var(--font-en);color:var(--ink);}
+
+/* ---------- drawer ---------- */
+.drawer{position:fixed;inset:0;z-index:50;}
+.drawer-bg{position:absolute;inset:0;background:rgba(13,27,61,.45);backdrop-filter:blur(2px);}
+.drawer-panel{position:absolute;top:0;bottom:0;inset-inline-start:0;width:min(520px,100%);background:#fff;overflow-y:auto;padding:26px 26px 40px;box-shadow:24px 0 60px rgba(13,27,61,.35);animation:slide .25s ease;}
+@keyframes slide{from{transform:translateX(-30px);opacity:0;}to{transform:none;opacity:1;}}
+.dr-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px;}
+.dr-head h2{font-size:1.35rem;font-weight:900;line-height:1.3;}
+.dr-head small{display:block;font-family:var(--font-en);color:var(--muted);direction:ltr;text-align:right;font-weight:600;}
+.x{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:#fff;font-size:1.1rem;font-weight:800;box-shadow:0 3px 0 #d5e0f2;flex:none;}
+.dr-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;align-items:center;}
+dl.det{display:grid;grid-template-columns:120px 1fr;gap:10px 14px;margin-bottom:20px;padding:16px;border-radius:var(--r-md);background:var(--wash);border:1.5px solid var(--line);}
+dl.det dt{color:var(--muted);font-weight:700;font-size:.85rem;}
+dl.det dd{font-weight:600;font-size:.92rem;word-break:break-word;}
+.mini-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.mini-chips span{padding:2px 11px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:.8rem;font-weight:700;}
+.dr-sec{margin-top:16px;}
+.dr-sec label{display:block;font-weight:800;font-size:.88rem;margin-bottom:6px;}
+.dr-actions{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;}
+
+/* ---------- teams ---------- */
+.builder{margin-bottom:24px;}
+.builder-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.builder-top p{color:var(--muted);font-weight:600;font-size:.92rem;max-width:60ch;}
+.stat-row{display:flex;gap:26px;flex-wrap:wrap;margin:16px 0 4px;}
+.stat-row div b{font-family:var(--font-en);font-weight:900;font-size:1.7rem;display:block;line-height:1.1;direction:ltr;text-align:right;}
+.stat-row div span{color:var(--muted);font-weight:700;font-size:.82rem;}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin-top:18px;}
+.team{background:#fff;border:1.5px solid var(--line);border-top:6px solid var(--blue);border-radius:var(--r-md);padding:14px 16px 16px;box-shadow:var(--extrude),-12px 18px 26px rgba(13,27,61,.08);}
+.team.locked{border-top-color:var(--c5);}
+.team.incomplete{border-top-color:var(--c4);}
+.team-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;}
+.team-h b{font-weight:900;font-size:1rem;}
+.score{font-family:var(--font-en);font-weight:800;font-size:.76rem;padding:2px 10px;border-radius:999px;background:#E8F8EF;color:#0c7a3c;border:1.5px solid #9bdcb7;}
+.score.mid{background:#FFF6E3;color:var(--warn);border-color:#f3d08e;}
+.score.low{background:#FFF0F2;color:#a3182b;border-color:#f5b5be;}
+.mem{display:flex;align-items:center;gap:9px;width:100%;text-align:right;background:var(--wash);border:1.5px solid transparent;border-radius:var(--r-sm);padding:6px 10px;margin-bottom:6px;font-weight:700;font-size:.86rem;color:var(--ink);}
+.mem span.sp{margin-inline-start:auto;font-weight:600;color:var(--muted);font-size:.76rem;white-space:nowrap;}
+.mem span.nmx{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+button.mem:hover{border-color:var(--blue);}
+.mem.sel{border-color:var(--blue);background:#EAF2FF;box-shadow:0 0 0 3px rgba(20,110,245,.18);}
+.team-f{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center;color:var(--muted);font-weight:700;font-size:.78rem;}
+.tag{font-size:.72rem;font-weight:800;padding:1px 9px;border-radius:999px;background:#E8F8EF;color:#0c7a3c;border:1.5px solid #9bdcb7;}
+.tag.warn{background:#FFF6E3;color:var(--warn);border-color:#f3d08e;}
+.left-box{margin-top:18px;padding:14px 16px;border-radius:var(--r-md);background:#FFF6E3;border:1.5px solid #f3d08e;font-weight:700;font-size:.9rem;}
+.left-box small{display:block;font-weight:600;color:var(--muted);margin-top:2px;}
+.sec-title{font-size:1.15rem;font-weight:900;margin:28px 0 4px;}
+
+/* ---------- log ---------- */
+.log-row{display:grid;grid-template-columns:150px 1fr auto;gap:14px;align-items:center;padding:12px 4px;border-bottom:1px solid #EAF0FA;font-size:.9rem;}
+.log-row:last-child{border:none;}
+.log-row .t{font-family:var(--font-en);color:var(--muted);font-size:.78rem;font-weight:600;}
+.log-row .a{font-weight:800;}
+.log-row .a small{display:block;color:var(--muted);font-weight:600;}
+.log-row .w{font-family:var(--font-en);font-size:.76rem;color:var(--muted);direction:ltr;word-break:break-all;}
+
+/* toast + busy */
+.toast{position:fixed;inset-inline:0;bottom:24px;display:flex;justify-content:center;pointer-events:none;z-index:100;}
+.toast div{background:var(--ink);color:#fff;font-weight:700;padding:12px 22px;border-radius:999px;box-shadow:0 6px 0 #091227,0 16px 30px rgba(13,27,61,.35);max-width:min(90vw,520px);font-size:.92rem;animation:pop .25s ease;}
+.toast div.err{background:#a3182b;box-shadow:0 6px 0 #6e0f1d,0 16px 30px rgba(163,24,43,.35);}
+@keyframes pop{from{transform:translateY(14px);opacity:0;}to{transform:none;opacity:1;}}
+.busy{position:fixed;top:0;inset-inline:0;height:4px;z-index:200;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--blue));background-size:200% 100%;animation:bz 1s linear infinite;}
+@keyframes bz{to{background-position:-200% 0;}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .grid-2,.grid-3{grid-template-columns:1fr;}
+  .toolbar{grid-template-columns:1fr 1fr 1fr;}
+  .toolbar .q{grid-column:1/-1;}
+}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr;}
+  .side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:14px;box-shadow:0 6px 0 #0a1530;}
+  .side .logo-row{margin:0 6px 0 0;}
+  .side .logo-row small{display:none;}
+  .nav-btn{width:auto;padding:9px 14px;font-size:.88rem;}
+  .nav-btn svg{display:none;}
+  .side-foot{margin:0 auto 0 0;border:none;padding:0;display:flex;align-items:center;gap:10px;}
+  .side-foot b{display:none;}
+  .main{padding:20px 16px 60px;}
+  .hrow{grid-template-columns:110px 1fr 34px;}
+  .log-row{grid-template-columns:1fr;gap:4px;}
+  dl.det{grid-template-columns:100px 1fr;}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div class="login" id="login" hidden>
+  <form class="login-card" id="loginForm" novalidate>
+    <div class="logo-row">
+      <div class="mark">NS<img src="assets/logo.png" alt="" onerror="this.remove()"></div>
+      <div><b>NEXTSTEP HACK 2027</b><small>لوحة الإدارة</small></div>
+    </div>
+    <h1>تسجيل دخول المشرفين</h1>
+    <p class="sub">هذه اللوحة مخصصة لإدارة الهاكاثون فقط.</p>
+    <div class="fld"><label for="lg_email">البريد الإلكتروني</label><input class="in" type="email" id="lg_email" dir="ltr" autocomplete="username" required></div>
+    <div class="fld"><label for="lg_pass">كلمة المرور</label><input class="in" type="password" id="lg_pass" dir="ltr" autocomplete="current-password" required></div>
+    <button class="btn btn-primary" type="submit" id="lg_btn" style="width:100%;padding:13px">دخول</button>
+    <p class="login-err" id="lg_err" hidden></p>
+  </form>
+</div>
+
+<!-- ============ APP ============ -->
+<div class="app" id="app" hidden>
+  <aside class="side">
+    <div class="logo-row">
+      <div class="mark">NS<img src="assets/logo.png" alt="" onerror="this.remove()"></div>
+      <div><b>NEXTSTEP HACK</b><small>لوحة الإدارة 2027</small></div>
+    </div>
+    <button class="nav-btn on" data-act="nav" data-view="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+      نظرة عامة</button>
+    <button class="nav-btn" data-act="nav" data-view="participants">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.6a3.5 3.5 0 010 6.8M18 14.4c2.2.7 3.5 2.6 3.5 5.6"/></svg>
+      المسجّلون <span class="badge-n" id="navPending" hidden>0</span></button>
+    <button class="nav-btn" data-act="nav" data-view="teams">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h4v-5h4v-5h4V5h6"/><path d="M3 20h18"/></svg>
+      الفرق</button>
+    <button class="nav-btn" data-act="nav" data-view="log">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>
+      سجل العمليات</button>
+    <div class="side-foot">
+      <b id="adminEmail">—</b>
+      <button class="btn btn-ghost btn-sm" data-act="signout">تسجيل الخروج</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="head">
+      <div><h1 id="vTitle">نظرة عامة</h1><p id="vSub"></p></div>
+      <div class="head-actions">
+        <span id="lastLoad" style="color:var(--muted);font-weight:600;font-size:.82rem"></span>
+        <button class="btn btn-ghost btn-sm" data-act="refresh">تحديث البيانات</button>
+      </div>
+    </div>
+    <div id="view"></div>
+  </main>
+</div>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer-bg" data-act="drawer-close"></div>
+  <div class="drawer-panel" id="drawerPanel" role="dialog" aria-modal="true"></div>
+</div>
+<div class="toast" id="toast" aria-live="polite"></div>
+<div class="busy" id="busy" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ================= CONFIG ================= */
+const SUPABASE_URL = "https://gtpdvlibwtgakjlkjfdx.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_p-ihLx5t2MUq__yjOB65CQ_oTiDTpbU";
+const TARGET = 1000, TEAM_SIZE = 5, PER = 25;
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* ================= DATA DICTIONARIES ================= */
+const COUNTRIES = [["ps","فلسطين"],["sy","سوريا"],["sd","السودان"],["sa","السعودية"],["eg","مصر"],["jo","الأردن"],["lb","لبنان"],["iq","العراق"],["ye","اليمن"],["ly","ليبيا"],["tn","تونس"],["dz","الجزائر"],["ma","المغرب"],["mr","موريتانيا"],["so","الصومال"],["dj","جيبوتي"],["km","جزر القمر"],["ae","الإمارات"],["kw","الكويت"],["qa","قطر"],["bh","البحرين"],["om","عُمان"],["tr","تركيا"],["my","ماليزيا"],["id","إندونيسيا"],["pk","باكستان"],["in","الهند"],["gb","المملكة المتحدة"],["de","ألمانيا"],["fr","فرنسا"],["nl","هولندا"],["se","السويد"],["no","النرويج"],["es","إسبانيا"],["it","إيطاليا"],["us","الولايات المتحدة"],["ca","كندا"],["au","أستراليا"],["za","جنوب أفريقيا"],["ng","نيجيريا"],["xx","دولة أخرى"]];
+const CN = Object.fromEntries(COUNTRIES);
+const SPEC = { medicine:"الطب والعلوم الصحية", engineering:"الهندسة", cs_ai:"الحاسوب والذكاء الاصطناعي", business:"إدارة الأعمال", economics:"الاقتصاد", law:"القانون", media:"الإعلام والتسويق", design:"التصميم", education:"التعليم", science:"العلوم", humanities:"العلوم الإنسانية", other:"تخصص آخر" };
+const SKILL = { programming:"البرمجة", ai:"الذكاء الاصطناعي", data:"تحليل البيانات", ui_ux:"UI/UX", engineering:"الهندسة", health:"الصحة", business:"الأعمال", law:"القانون", media:"التسويق والمحتوى", writing:"الكتابة", pitching:"العرض", pm:"إدارة المشاريع" };
+const LEVEL = { student:"طالب", graduate:"خريج", professional:"يعمل في المجال" };
+const ROLE = { participant:"مشارك", mentor:"مرشد", judge:"محكّم" };
+const STATUS = { pending:"قيد المراجعة", confirmed:"مؤكد", waitlist:"قائمة الانتظار", rejected:"مرفوض" };
+const STATUS_COLOR = { pending:"#FFB020", confirmed:"#1FC8A0", waitlist:"#146EF5", rejected:"#FF5C7A" };
+const EXPL = { beginner:"مبتدئ", intermediate:"متوسط", advanced:"متقدم", "1-3":"1–3 سنوات", "4-7":"4–7 سنوات", "8+":"8+ سنوات" };
+const HEARD = { social:"مواقع التواصل", friend:"صديق أو زميل", university:"الجامعة", community:"مجتمع تقني", other:"أخرى" };
+
+/* ================= HELPERS ================= */
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const nf = new Intl.NumberFormat("en-US");
+const flag = (c) => c === "xx" ? "" : `<img class="flag" src="https://flagcdn.com/w40/${esc(c)}.png" alt="" width="24" height="18" loading="lazy" onerror="this.style.visibility='hidden'">`;
+const code = (id) => "NSH-" + String(id).replace(/-/g, "").slice(0, 6).toUpperCase();
+const fdate = (iso) => new Date(iso).toLocaleDateString("ar-u-nu-latn", { day: "numeric", month: "short", year: "numeric" });
+const fdt = (iso) => new Date(iso).toLocaleString("ar-u-nu-latn", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+const chunk = (a, n) => { const o = []; for (let i = 0; i < a.length; i += n) o.push(a.slice(i, i + n)); return o; };
+const tName = (id) => { const t = S.T.find((x) => x.id === id); return t ? t.name : ""; };
+
+function toast(msg, kind) {
+  const box = $("#toast"); const d = document.createElement("div");
+  d.textContent = msg; if (kind === "err") d.className = "err"; box.innerHTML = ""; box.appendChild(d);
+  clearTimeout(toast.t); toast.t = setTimeout(() => { box.innerHTML = ""; }, kind === "err" ? 6000 : 2800);
+}
+let busyN = 0;
+const busy = (on) => { busyN = Math.max(0, busyN + (on ? 1 : -1)); $("#busy").hidden = busyN === 0; };
+
+/* ================= STATE ================= */
+const S = { user: null, P: [], T: [], L: [], view: "overview", f: { q: "", role: "all", status: "all", country: "all", spec: "all", team: "all" }, page: 1, sel: new Set(), draft: null, left: [], swap: null, lastLoad: null, drawerId: null };
+
+/* ================= ALGORITHM (pure, testable) ================= */
+/*ALGO-START*/
+const TECH_SKILLS = ["programming", "ai", "data"];
+const isTech = (p) => p.specialty === "cs_ai" || p.specialty === "engineering" || (p.skills || []).some((s) => TECH_SKILLS.includes(s));
+const expVal = (p) => ({ beginner: 1, "1-3": 1, intermediate: 2, "4-7": 2, advanced: 3, "8+": 3 }[p.experience] || 2);
+
+function teamScore(m, gAvg) {
+  const sc = {}, cc = {}; let tech = 0, ex = 0;
+  m.forEach((p) => { sc[p.specialty] = (sc[p.specialty] || 0) + 1; cc[p.country_code] = (cc[p.country_code] || 0) + 1; if (isTech(p)) tech++; ex += expVal(p); });
+  let s = 0;
+  Object.values(sc).forEach((v) => (s += v * v * 3));
+  Object.values(cc).forEach((v) => (s += v * v));
+  if (!tech) s += 8;
+  s += Math.abs(ex / m.length - gAvg) * 4;
+  return s;
+}
+function diversity(m) {
+  const sp = new Set(m.map((p) => p.specialty)).size, co = new Set(m.map((p) => p.country_code)).size;
+  return Math.round((sp / m.length) * 55 + (co / m.length) * 30 + (m.some(isTech) ? 15 : 0));
+}
+const EMAIL_FIND = /[^\s,;:<>()"']+@[^\s,;:<>()"']+\.[^\s,;:<>()"']+/g;
+
+/* pool: confirmed participants without a team. Returns {teams:[{members,locked}], left:[]} */
+function buildTeams(pool, size) {
+  size = size || 5;
+  const byEmail = new Map(pool.map((p) => [String(p.email).toLowerCase(), p]));
+  const used = new Set(), teams = [];
+
+  /* 1) pre-formed teams: a person lists 4 registered emails that form exactly one group of 5 */
+  pool.forEach((p) => {
+    if (used.has(p.id) || !p.team_request) return;
+    const g = new Map([[p.id, p]]);
+    (String(p.team_request).match(EMAIL_FIND) || []).forEach((e) => { const q = byEmail.get(e.toLowerCase()); if (q && !used.has(q.id)) g.set(q.id, q); });
+    if (g.size === size) { teams.push({ members: [...g.values()], locked: true }); g.forEach((_, id) => used.add(id)); }
+  });
+
+  /* 2) the rest: earliest registrants first fill k teams, extras stay out */
+  const rest = pool.filter((p) => !used.has(p.id)).sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+  const k = Math.floor(rest.length / size);
+  const free = rest.slice(0, k * size), left = rest.slice(k * size);
+  if (k > 0) {
+    const sorted = [...free].sort((a, b) => (a.specialty < b.specialty ? -1 : a.specialty > b.specialty ? 1 : Math.random() - 0.5));
+    const T = Array.from({ length: k }, () => []);
+    sorted.forEach((p, i) => { const r = Math.floor(i / k), c = i % k; T[r % 2 === 0 ? c : k - 1 - c].push(p); });
+    const gAvg = free.reduce((a, p) => a + expVal(p), 0) / free.length;
+    const sc = T.map((m) => teamScore(m, gAvg));
+    const iters = Math.min(60000, 4000 + k * 400);
+    for (let it = 0; it < iters && k > 1; it++) {
+      const a = Math.floor(Math.random() * k); let b = Math.floor(Math.random() * k); if (a === b) continue;
+      const i = Math.floor(Math.random() * size), j = Math.floor(Math.random() * size);
+      const A = T[a], B = T[b]; const tmp = A[i]; A[i] = B[j]; B[j] = tmp;
+      const na = teamScore(A, gAvg), nb = teamScore(B, gAvg);
+      if (na + nb < sc[a] + sc[b]) { sc[a] = na; sc[b] = nb; } else { B[j] = A[i]; A[i] = tmp; }
+    }
+    T.forEach((m) => teams.push({ members: m, locked: false }));
+  }
+  return { teams, left };
+}
+/*ALGO-END*/
+
+/* ================= DATA LOADING ================= */
+async function fetchAll(table, order) {
+  let all = [], from = 0; const size = 1000;
+  for (;;) {
+    const { data, error } = await sb.from(table).select("*").order(order, { ascending: false }).range(from, from + size - 1);
+    if (error) throw error; all = all.concat(data); if (data.length < size) break; from += size;
+  }
+  return all;
+}
+async function loadAll(silent) {
+  if (!silent) busy(true);
+  try {
+    const [P, T, L] = await Promise.all([
+      fetchAll("hack_participants", "created_at"),
+      sb.from("hack_teams").select("*").order("number"),
+      sb.from("hack_audit_log").select("*").order("created_at", { ascending: false }).limit(200)
+    ]);
+    if (T.error) throw T.error; if (L.error) throw L.error;
+    S.P = P; S.T = T.data; S.L = L.data; S.lastLoad = new Date();
+    render();
+  } catch (e) { console.error(e); toast("تعذّر تحميل البيانات: " + (e.message || e), "err"); }
+  finally { if (!silent) busy(false); }
+}
+async function log(action, details) {
+  const row = { action, admin_email: S.user && S.user.email, details: details || {} };
+  const { error } = await sb.from("hack_audit_log").insert(row);
+  if (!error) S.L.unshift(Object.assign({ created_at: new Date().toISOString(), id: Date.now() }, row));
+}
+
+/* ================= AUTH ================= */
+function showLogin(msg) {
+  $("#app").hidden = true; $("#login").hidden = false;
+  const e = $("#lg_err"); if (msg) { e.textContent = msg; e.hidden = false; } else e.hidden = true;
+}
+async function enter(session) {
+  const { data, error } = await sb.rpc("is_hack_admin");
+  if (error || data !== true) { await sb.auth.signOut(); showLogin("هذا الحساب ليس مشرفاً على الهاكاثون."); return; }
+  S.user = session.user;
+  $("#adminEmail").textContent = S.user.email;
+  $("#login").hidden = true; $("#app").hidden = false;
+  await loadAll();
+}
+$("#loginForm").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const email = $("#lg_email").value.trim(), password = $("#lg_pass").value;
+  if (!email || !password) return showLogin("أدخل البريد وكلمة المرور.");
+  const b = $("#lg_btn"); b.disabled = true; b.textContent = "جارٍ الدخول…";
+  const { data, error } = await sb.auth.signInWithPassword({ email, password });
+  b.disabled = false; b.textContent = "دخول";
+  if (error || !data.session) return showLogin("بيانات الدخول غير صحيحة.");
+  $("#lg_pass").value = ""; await enter(data.session);
+});
+sb.auth.onAuthStateChange((ev) => { if (ev === "SIGNED_OUT") { S.user = null; showLogin(); } });
+
+/* ================= ROUTER ================= */
+const TITLES = {
+  overview: ["نظرة عامة", "صورة حية عن التسجيل في الهاكاثون"],
+  participants: ["المسجّلون", "مراجعة الطلبات وإدارة المشاركين والمرشدين والمحكّمين"],
+  teams: ["الفرق", "تشكيل فرق من 5 أعضاء بالضبط بتنوع في التخصصات والدول"],
+  log: ["سجل العمليات", "كل إجراء حساس يُسجَّل هنا"]
+};
+function go(v) { S.view = v; S.page = 1; render(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+function render() {
+  document.querySelectorAll(".nav-btn[data-view]").forEach((b) => b.classList.toggle("on", b.dataset.view === S.view));
+  $("#vTitle").textContent = TITLES[S.view][0]; $("#vSub").textContent = TITLES[S.view][1];
+  $("#lastLoad").textContent = S.lastLoad ? "آخر تحديث: " + S.lastLoad.toLocaleTimeString("ar-u-nu-latn", { hour: "2-digit", minute: "2-digit" }) : "";
+  const pend = S.P.filter((p) => p.status === "pending").length;
+  const nb = $("#navPending"); nb.hidden = pend === 0; nb.textContent = nf.format(pend);
+  ({ overview: renderOverview, participants: renderParticipants, teams: renderTeams, log: renderLog })[S.view]();
+}
+
+/* ================= OVERVIEW ================= */
+function countBy(arr, fn) { const m = {}; arr.forEach((x) => { const k = fn(x); m[k] = (m[k] || 0) + 1; }); return m; }
+function hbars(rows, max, flags) {
+  if (!rows.length) return '<div class="empty">لا بيانات بعد.</div>';
+  return '<div class="hbars">' + rows.map(([k, label, n]) => `<div class="hrow"><div class="nm">${flags ? flag(k) : ""}<span>${esc(label)}</span></div><div class="tr"><i style="width:${Math.max(3, (n / max) * 100)}%"></i></div><b>${nf.format(n)}</b></div>`).join("") + "</div>";
+}
+function renderOverview() {
+  const P = S.P, live = P.filter((p) => p.status !== "rejected");
+  const parts = P.filter((p) => p.join_as === "participant");
+  const c = (f) => P.filter(f).length;
+  const confirmedNoTeam = c((p) => p.join_as === "participant" && p.status === "confirmed" && !p.team_id);
+  const kp = [
+    ["إجمالي المشاركين", live.filter((p) => p.join_as === "participant").length, "var(--c2)", `الهدف ${nf.format(TARGET)}`],
+    ["مؤكدون", c((p) => p.join_as === "participant" && p.status === "confirmed"), "var(--c5)", ""],
+    ["قيد المراجعة", c((p) => p.join_as === "participant" && p.status === "pending"), "var(--c4)", ""],
+    ["قائمة الانتظار", c((p) => p.join_as === "participant" && p.status === "waitlist"), "var(--c3)", ""],
+    ["المرشدون", live.filter((p) => p.join_as === "mentor").length, "var(--c1)", ""],
+    ["المحكّمون", live.filter((p) => p.join_as === "judge").length, "var(--cyan)", ""],
+    ["الدول", new Set(live.map((p) => p.country_code)).size, "var(--blue)", ""],
+    ["فرق محفوظة", S.T.length, "var(--c5)", `من ${nf.format(Math.floor(parts.filter((p) => p.status === "confirmed").length / TEAM_SIZE))} ممكنة`],
+    ["مؤكدون بلا فريق", confirmedNoTeam, "var(--c4)", ""]
+  ];
+  const pending = c((p) => p.status === "pending");
+
+  /* daily registrations */
+  const days = []; const now = new Date();
+  for (let i = 20; i >= 0; i--) { const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i); days.push({ key: d.toDateString(), label: d.getDate(), n: 0, d }); }
+  P.forEach((p) => { const k = new Date(p.created_at).toDateString(); const d = days.find((x) => x.key === k); if (d) d.n++; });
+  const maxD = Math.max(1, ...days.map((d) => d.n));
+
+  /* status donut */
+  const st = countBy(parts, (p) => p.status), totP = parts.length || 1; let acc = 0;
+  const stops = Object.keys(STATUS).map((k) => { const a = acc / totP * 100; acc += (st[k] || 0); return `${STATUS_COLOR[k]} ${a}% ${acc / totP * 100}%`; });
+  const donutBg = parts.length ? `conic-gradient(${stops.join(",")})` : "#E8EFFB";
+
+  const byC = Object.entries(countBy(live, (p) => p.country_code)).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([k, n]) => [k, CN[k] || "دولة أخرى", n]);
+  const bySp = Object.entries(countBy(live.filter((p) => p.join_as === "participant"), (p) => p.specialty)).sort((a, b) => b[1] - a[1]).map(([k, n]) => [k, SPEC[k] || k, n]);
+
+  $("#view").innerHTML = `
+    ${pending ? `<div class="alert"><div><b>${nf.format(pending)} طلباً بانتظار المراجعة</b><span>راجعها وأكّد المقبولين ليدخلوا في تشكيل الفرق.</span></div><button class="btn btn-primary" data-act="review-pending">راجع الطلبات الآن</button></div>` : ""}
+    <div class="kpis">${kp.map(([l, n, col, sub]) => `<div class="kpi" style="--k:${col}"><b>${nf.format(n)}</b><span>${l}</span>${sub ? `<em>${sub}</em>` : ""}</div>`).join("")}</div>
+    <div class="grid-2">
+      <div class="card"><h3>التسجيلات اليومية <small>آخر 21 يوماً</small></h3>
+        <div class="spark">${days.map((d, i) => `<div class="col ${i === 20 ? "today" : ""}" title="${nf.format(d.n)} تسجيل"><i style="height:${(d.n / maxD) * 100}%"></i><span>${d.label}</span></div>`).join("")}</div></div>
+      <div class="card"><h3>حالة المشاركين</h3>
+        <div class="donut-wrap"><div class="donut" style="background:${donutBg}"><div><span><b>${nf.format(parts.length)}</b><small>مشارك</small></span></div></div>
+        <div class="legend">${Object.keys(STATUS).map((k) => `<span><i style="background:${STATUS_COLOR[k]}"></i>${STATUS[k]}<em>${nf.format(st[k] || 0)}</em></span>`).join("")}</div></div></div>
+    </div>
+    <div class="grid-3">
+      <div class="card"><h3>أكثر الدول مشاركة <small>أعلى 8</small></h3>${hbars(byC, Math.max(1, ...byC.map((r) => r[2])), true)}</div>
+      <div class="card"><h3>المشاركون حسب التخصص</h3>${hbars(bySp, Math.max(1, ...bySp.map((r) => r[2])), false)}</div>
+    </div>`;
+}
+
+/* ================= PARTICIPANTS ================= */
+function filtered() {
+  const f = S.f, q = f.q.trim().toLowerCase();
+  return S.P.filter((p) =>
+    (f.role === "all" || p.join_as === f.role) && (f.status === "all" || p.status === f.status) &&
+    (f.country === "all" || p.country_code === f.country) && (f.spec === "all" || p.specialty === f.spec) &&
+    (f.team === "all" || (f.team === "with" ? !!p.team_id : !p.team_id)) &&
+    (!q || (p.full_name + " " + p.email + " " + (p.institution || "") + " " + (p.city || "")).toLowerCase().includes(q)));
+}
+function opt(map, all, cur) { return `<option value="all">${all}</option>` + Object.entries(map).map(([k, v]) => `<option value="${esc(k)}" ${cur === k ? "selected" : ""}>${esc(v)}</option>`).join(""); }
+function renderParticipants() {
+  const present = [...new Set(S.P.map((p) => p.country_code))]; const cmap = {}; present.forEach((c) => (cmap[c] = CN[c] || "دولة أخرى"));
+  const f = S.f;
+  $("#view").innerHTML = `
+    <div class="toolbar">
+      <input class="in q" type="search" placeholder="ابحث بالاسم أو البريد أو الجامعة أو المدينة" data-f="q" value="${esc(f.q)}" aria-label="بحث">
+      <select class="in" data-f="role" aria-label="الصفة">${opt(ROLE, "كل الصفات", f.role)}</select>
+      <select class="in" data-f="status" aria-label="الحالة">${opt(STATUS, "كل الحالات", f.status)}</select>
+      <select class="in" data-f="country" aria-label="الدولة">${opt(cmap, "كل الدول", f.country)}</select>
+      <select class="in" data-f="spec" aria-label="التخصص">${opt(SPEC, "كل التخصصات", f.spec)}</select>
+      <select class="in" data-f="team" aria-label="الفريق"><option value="all">كل الحالات (فريق)</option><option value="with" ${f.team === "with" ? "selected" : ""}>ضمن فريق</option><option value="without" ${f.team === "without" ? "selected" : ""}>بلا فريق</option></select>
+    </div>
+    <div id="bulkbar"></div>
+    <div class="card table-card"><div class="tbl-scroll" id="tbl"></div><div class="pager" id="pager"></div></div>`;
+  renderTable();
+}
+function renderTable() {
+  const rows = filtered(), pages = Math.max(1, Math.ceil(rows.length / PER));
+  if (S.page > pages) S.page = pages;
+  const slice = rows.slice((S.page - 1) * PER, S.page * PER);
+  const allOn = slice.length && slice.every((p) => S.sel.has(p.id));
+  $("#tbl").innerHTML = slice.length ? `<table><thead><tr>
+      <th style="width:40px"><input type="checkbox" data-chkall ${allOn ? "checked" : ""} aria-label="تحديد الصفحة"></th>
+      <th>الاسم</th><th>الدولة</th><th>التخصص</th><th>الصفة</th><th>الحالة</th><th>الفريق</th><th>التسجيل</th></tr></thead><tbody>
+      ${slice.map((p) => `<tr data-act="open" data-id="${esc(p.id)}">
+        <td><input type="checkbox" data-chk="${esc(p.id)}" ${S.sel.has(p.id) ? "checked" : ""} aria-label="تحديد"></td>
+        <td><b>${esc(p.full_name)}</b><small>${esc(p.email)}</small></td>
+        <td><span class="cn">${flag(p.country_code)}${esc(CN[p.country_code] || "—")}</span></td>
+        <td>${esc(SPEC[p.specialty] || p.specialty)}</td>
+        <td><span class="bd role">${esc(ROLE[p.join_as])}</span></td>
+        <td><span class="bd ${esc(p.status)}">${esc(STATUS[p.status])}</span></td>
+        <td>${p.team_id ? esc(tName(p.team_id)) : '<span style="color:var(--muted)">—</span>'}</td>
+        <td>${esc(fdate(p.created_at))}</td></tr>`).join("")}
+      </tbody></table>` : '<div class="empty">لا نتائج مطابقة.</div>';
+  $("#pager").innerHTML = `<span>${nf.format(rows.length)} نتيجة</span>
+    <div class="btns"><button class="btn btn-ghost btn-sm" data-act="export">تصدير CSV</button>
+    <button class="btn btn-ghost btn-sm" data-act="page" data-p="${S.page - 1}" ${S.page <= 1 ? "disabled" : ""}>السابق</button>
+    <span class="pn">${S.page} / ${pages}</span>
+    <button class="btn btn-ghost btn-sm" data-act="page" data-p="${S.page + 1}" ${S.page >= pages ? "disabled" : ""}>التالي</button></div>`;
+  const n = S.sel.size;
+  $("#bulkbar").innerHTML = n ? `<div class="bulk"><span>تم تحديد ${nf.format(n)}</span><span class="sp"></span>
+    <button class="btn btn-ok btn-sm" data-act="bulk" data-status="confirmed">تأكيد</button>
+    <button class="btn btn-ghost btn-sm" data-act="bulk" data-status="waitlist">قائمة الانتظار</button>
+    <button class="btn btn-danger btn-sm" data-act="bulk" data-status="rejected">رفض</button>
+    <button class="btn btn-ghost btn-sm" data-act="clearsel">إلغاء التحديد</button></div>` : "";
+}
+
+async function patchParticipants(ids, patch, action, details) {
+  busy(true);
+  try {
+    for (const part of chunk(ids, 80)) {
+      const { error } = await sb.from("hack_participants").update(patch).in("id", part);
+      if (error) throw error;
+    }
+    const set = new Set(ids); S.P.forEach((p) => { if (set.has(p.id)) Object.assign(p, patch); });
+    await log(action, Object.assign({ count: ids.length }, details || {}, { patch }));
+    return true;
+  } catch (e) { console.error(e); toast("فشل التحديث: " + (e.message || e), "err"); return false; }
+  finally { busy(false); }
+}
+
+function exportCSV() {
+  const rows = filtered();
+  const head = ["الرمز", "الصفة", "الاسم", "البريد", "الدولة", "المدينة", "الجامعة/الجهة", "التخصص", "الوضع", "الخبرة", "المهارات", "النبذة", "LinkedIn", "الفريق", "الحالة", "ملاحظات الإدارة", "تاريخ التسجيل"];
+  const cell = (v) => { let s = String(v == null ? "" : v); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; };
+  const lines = [head.map(cell).join(",")].concat(rows.map((p) => [code(p.id), ROLE[p.join_as], p.full_name, p.email, CN[p.country_code] || p.country_code, p.city, p.institution, SPEC[p.specialty] || p.specialty, LEVEL[p.education_level] || "", EXPL[p.experience] || p.experience, (p.skills || []).map((s) => SKILL[s] || s).join(" | "), p.bio, p.linkedin_url, p.team_id ? tName(p.team_id) : "", STATUS[p.status], p.admin_notes, p.created_at].map(cell).join(",")));
+  const blob = new Blob(["\uFEFF" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "nextstep-hack-participants.csv";
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  toast("تم تصدير " + nf.format(rows.length) + " سجلاً");
+}
+
+/* ---------- drawer ---------- */
+function openDrawer(id) {
+  const p = S.P.find((x) => x.id === id); if (!p) return;
+  S.drawerId = id;
+  const li = /^https?:\/\//i.test(p.linkedin_url || "") ? `<a href="${esc(p.linkedin_url)}" target="_blank" rel="noopener noreferrer">${esc(p.linkedin_url)}</a>` : esc(p.linkedin_url || "—");
+  const dd = (v) => (v ? esc(v) : "—");
+  $("#drawerPanel").innerHTML = `
+    <div class="dr-head"><div><h2>${esc(p.full_name)}</h2><small>${esc(p.email)}</small></div><button class="x" data-act="drawer-close" aria-label="إغلاق">✕</button></div>
+    <div class="dr-tags"><span class="bd role">${esc(ROLE[p.join_as])}</span><span class="bd ${esc(p.status)}">${esc(STATUS[p.status])}</span><span class="cn" style="display:flex;gap:8px;align-items:center;font-weight:700">${flag(p.country_code)}${esc(CN[p.country_code] || "")}</span></div>
+    <dl class="det">
+      <dt>رمز التسجيل</dt><dd style="font-family:var(--font-en)">${esc(code(p.id))}</dd>
+      <dt>المدينة</dt><dd>${dd(p.city)}</dd>
+      <dt>الجامعة / الجهة</dt><dd>${dd(p.institution)}</dd>
+      <dt>التخصص</dt><dd>${esc(SPEC[p.specialty] || p.specialty)}</dd>
+      <dt>الوضع</dt><dd>${esc(LEVEL[p.education_level] || "—")}</dd>
+      <dt>الخبرة</dt><dd>${esc(EXPL[p.experience] || p.experience)}</dd>
+      <dt>المهارات</dt><dd><div class="mini-chips">${(p.skills || []).map((s) => `<span>${esc(SKILL[s] || s)}</span>`).join("") || "—"}</div></dd>
+      <dt>النبذة</dt><dd>${dd(p.bio)}</dd>
+      <dt>LinkedIn</dt><dd>${li}</dd>
+      <dt>طلب الفريق</dt><dd>${dd(p.team_request)}</dd>
+      <dt>كيف عرف</dt><dd>${esc(HEARD[p.heard_from] || "—")}</dd>
+      <dt>تاريخ التسجيل</dt><dd>${esc(fdt(p.created_at))}</dd>
+    </dl>
+    <div class="dr-sec"><label for="dr_status">الحالة</label><select class="in" id="dr_status">${Object.entries(STATUS).map(([k, v]) => `<option value="${k}" ${p.status === k ? "selected" : ""}>${v}</option>`).join("")}</select></div>
+    ${p.join_as === "participant" ? `<div class="dr-sec"><label for="dr_team">الفريق</label><select class="in" id="dr_team"><option value="">بلا فريق</option>${S.T.map((t) => `<option value="${esc(t.id)}" ${p.team_id === t.id ? "selected" : ""}>${esc(t.name)}</option>`).join("")}</select></div>` : ""}
+    <div class="dr-sec"><label for="dr_notes">ملاحظات الإدارة (داخلية)</label><textarea class="in" id="dr_notes" maxlength="1000">${esc(p.admin_notes || "")}</textarea></div>
+    <div class="dr-actions"><button class="btn btn-primary" data-act="drawer-save">حفظ التغييرات</button><button class="btn btn-danger" data-act="drawer-delete">حذف التسجيل</button></div>`;
+  $("#drawer").hidden = false;
+}
+const closeDrawer = () => { $("#drawer").hidden = true; S.drawerId = null; };
+async function saveDrawer() {
+  const p = S.P.find((x) => x.id === S.drawerId); if (!p) return;
+  const patch = { status: $("#dr_status").value, admin_notes: $("#dr_notes").value.trim() || null };
+  if (p.join_as === "participant") patch.team_id = $("#dr_team").value || null;
+  if (await patchParticipants([p.id], patch, "update_participant", { id: code(p.id) })) { toast("تم الحفظ"); closeDrawer(); render(); }
+}
+async function deleteDrawer() {
+  const p = S.P.find((x) => x.id === S.drawerId); if (!p) return;
+  if (!confirm(`سيُحذف تسجيل «${p.full_name}» نهائياً. هل أنت متأكد؟`)) return;
+  busy(true);
+  const { error } = await sb.from("hack_participants").delete().eq("id", p.id);
+  busy(false);
+  if (error) return toast("فشل الحذف: " + error.message, "err");
+  S.P = S.P.filter((x) => x.id !== p.id); S.sel.delete(p.id);
+  await log("delete_participant", { id: code(p.id) });
+  toast("تم الحذف"); closeDrawer(); render();
+}
+
+/* ================= TEAMS ================= */
+function memHTML(p, attrs, sel) {
+  const tag = attrs ? "button" : "div";
+  return `<${tag} class="mem ${sel ? "sel" : ""}" ${attrs || ""} ${attrs ? 'type="button"' : ""}>${flag(p.country_code)}<span class="nmx">${esc(p.full_name)}</span><span class="sp">${esc(SPEC[p.specialty] || "")}</span></${tag}>`;
+}
+const scoreCls = (s) => (s >= 75 ? "" : s >= 55 ? "mid" : "low");
+function renderTeams() {
+  const pool = S.P.filter((p) => p.join_as === "participant" && p.status === "confirmed" && !p.team_id);
+  const confirmed = S.P.filter((p) => p.join_as === "participant" && p.status === "confirmed").length;
+  const possible = Math.floor(pool.length / TEAM_SIZE);
+  let draftHTML = "";
+  if (S.draft) {
+    const avg = S.draft.length ? Math.round(S.draft.reduce((a, t) => a + diversity(t.members), 0) / S.draft.length) : 0;
+    draftHTML = `<div class="sec-title">الفرق المقترحة <small style="color:var(--muted);font-weight:700;font-size:.85rem">متوسط التنوع ${avg}% · اضغط على عضوين من فريقين مختلفين لتبديلهما</small></div>
+      <div class="tgrid">${S.draft.map((t, ti) => { const d = diversity(t.members); return `<div class="team ${t.locked ? "locked" : ""}"><div class="team-h"><b>مقترح ${ti + 1}</b><span class="score ${scoreCls(d)}">تنوع ${d}%</span></div>
+        ${t.members.map((p, mi) => memHTML(p, t.locked ? "disabled" : `data-act="swap" data-t="${ti}" data-i="${mi}"`, S.swap && S.swap.t === ti && S.swap.i === mi)).join("")}
+        <div class="team-f">${t.locked ? '<span class="tag">فريق جاهز</span>' : ""}<span>${new Set(t.members.map((p) => p.country_code)).size} دول</span><span>${new Set(t.members.map((p) => p.specialty)).size} تخصصات</span></div></div>`; }).join("")}</div>
+      ${S.left.length ? `<div class="left-box">خارج الفرق: ${nf.format(S.left.length)} مشارك<small>${S.left.map((p) => esc(p.full_name)).join("، ")} — يبقون في الانتظار حتى يكتمل خمسة آخرون.</small></div>` : ""}
+      <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap"><button class="btn btn-primary" data-act="savedraft">حفظ ${nf.format(S.draft.length)} فريقاً</button><button class="btn btn-ghost" data-act="build">إعادة التوليد</button><button class="btn btn-ghost" data-act="discard">إلغاء المسودة</button></div>`;
+  }
+  const saved = S.T.map((t) => {
+    const m = S.P.filter((p) => p.team_id === t.id); const full = m.length === TEAM_SIZE; const d = diversity(m.length ? m : [{ specialty: "", country_code: "" }]);
+    return `<div class="team ${full ? "" : "incomplete"}"><div class="team-h"><b>${esc(t.name)}</b>${m.length ? `<span class="score ${scoreCls(d)}">تنوع ${d}%</span>` : ""}</div>
+      ${m.map((p) => memHTML(p)).join("") || '<div class="empty" style="padding:8px">فريق فارغ</div>'}
+      <div class="team-f"><span class="tag ${full ? "" : "warn"}">${m.length}/${TEAM_SIZE}</span><span>${new Set(m.map((p) => p.country_code)).size} دول</span>
+      <span style="margin-inline-start:auto;display:flex;gap:6px"><button class="btn btn-ghost btn-sm" data-act="rename" data-id="${esc(t.id)}">إعادة تسمية</button><button class="btn btn-danger btn-sm" data-act="dissolve" data-id="${esc(t.id)}">حلّ</button></span></div></div>`;
+  }).join("");
+
+  $("#view").innerHTML = `
+    <div class="card builder"><div class="builder-top"><div><h3 style="margin-bottom:6px">منشئ الفرق الذكي</h3>
+      <p>يأخذ المشاركين المؤكدين بلا فريق ويوزّعهم في فرق من 5 بالضبط، بحيث يتنوع كل فريق في التخصصات والدول ويضم شخصاً تقنياً على الأقل، مع احترام الفرق الجاهزة التي ذكر أعضاؤها بعضهم بالبريد.</p></div>
+      <button class="btn btn-primary" data-act="build" ${possible < 1 ? "disabled" : ""}>ابنِ الفرق المقترحة</button></div>
+      <div class="stat-row"><div><b>${nf.format(confirmed)}</b><span>مشارك مؤكد</span></div><div><b>${nf.format(pool.length)}</b><span>بلا فريق</span></div><div><b>${nf.format(possible)}</b><span>فريق ممكن الآن</span></div><div><b>${nf.format(pool.length % TEAM_SIZE)}</b><span>سيبقون خارجها</span></div></div>
+      ${possible < 1 ? '<p style="color:var(--muted);font-weight:700;margin-top:10px">أكّد 5 مشاركين على الأقل من صفحة «المسجّلون» لتبدأ.</p>' : ""}
+    </div>
+    ${draftHTML}
+    <div class="sec-title">الفرق المحفوظة <small style="color:var(--muted);font-weight:700;font-size:.85rem">${nf.format(S.T.length)} فريق</small></div>
+    ${S.T.length ? `<div class="tgrid">${saved}</div>` : '<div class="card empty">لم تُحفظ فرق بعد.</div>'}`;
+}
+function doBuild() {
+  const pool = S.P.filter((p) => p.join_as === "participant" && p.status === "confirmed" && !p.team_id);
+  const r = buildTeams(pool, TEAM_SIZE); S.draft = r.teams; S.left = r.left; S.swap = null;
+  if (!r.teams.length) toast("لا يكفي مشاركون مؤكدون لتشكيل فريق.", "err");
+  renderTeams();
+}
+function doSwap(t, i) {
+  if (!S.swap) { S.swap = { t, i }; return renderTeams(); }
+  if (S.swap.t === t) { S.swap = S.swap.i === i ? null : { t, i }; return renderTeams(); }
+  const A = S.draft[S.swap.t].members, B = S.draft[t].members; const tmp = A[S.swap.i]; A[S.swap.i] = B[i]; B[i] = tmp;
+  S.swap = null; renderTeams();
+}
+async function saveDraft() {
+  if (!S.draft || !S.draft.length) return;
+  if (!confirm(`سيتم حفظ ${S.draft.length} فريقاً وإسناد أعضائها. متابعة؟`)) return;
+  busy(true);
+  try {
+    const start = Math.max(0, ...S.T.map((t) => t.number)) + 1;
+    const rows = S.draft.map((_, i) => ({ number: start + i, name: "فريق " + String(start + i).padStart(3, "0") }));
+    const { data, error } = await sb.from("hack_teams").insert(rows).select();
+    if (error) throw error;
+    const byNum = new Map(data.map((r) => [r.number, r]));
+    const jobs = S.draft.map((t, i) => ({ id: byNum.get(start + i).id, ids: t.members.map((p) => p.id) }));
+    for (const part of chunk(jobs, 8)) {
+      const res = await Promise.all(part.map((j) => sb.from("hack_participants").update({ team_id: j.id }).in("id", j.ids)));
+      const bad = res.find((r) => r.error); if (bad) throw bad.error;
+    }
+    jobs.forEach((j) => S.P.forEach((p) => { if (j.ids.includes(p.id)) p.team_id = j.id; }));
+    S.T = S.T.concat(data).sort((a, b) => a.number - b.number);
+    await log("build_teams", { teams: data.length, first: start });
+    S.draft = null; S.left = []; toast("تم حفظ " + data.length + " فريقاً"); render();
+  } catch (e) { console.error(e); toast("فشل الحفظ: " + (e.message || e) + " — راجع الفرق المحفوظة ثم أعد المحاولة.", "err"); await loadAll(true); }
+  finally { busy(false); }
+}
+async function renameTeam(id) {
+  const t = S.T.find((x) => x.id === id); if (!t) return;
+  const name = (prompt("اسم الفريق الجديد:", t.name) || "").trim();
+  if (!name || name === t.name) return; if (name.length < 2 || name.length > 80) return toast("الاسم بين 2 و80 حرفاً.", "err");
+  const { error } = await sb.from("hack_teams").update({ name }).eq("id", id);
+  if (error) return toast("فشل: " + error.message, "err");
+  await log("rename_team", { from: t.name, to: name }); t.name = name; toast("تمت إعادة التسمية"); renderTeams();
+}
+async function dissolveTeam(id) {
+  const t = S.T.find((x) => x.id === id); if (!t) return;
+  if (!confirm(`سيُحلّ «${t.name}» ويعود أعضاؤه بلا فريق. متابعة؟`)) return;
+  busy(true);
+  try {
+    const u = await sb.from("hack_participants").update({ team_id: null }).eq("team_id", id); if (u.error) throw u.error;
+    const d = await sb.from("hack_teams").delete().eq("id", id); if (d.error) throw d.error;
+    S.P.forEach((p) => { if (p.team_id === id) p.team_id = null; }); S.T = S.T.filter((x) => x.id !== id);
+    await log("dissolve_team", { name: t.name }); toast("تم حلّ الفريق"); render();
+  } catch (e) { toast("فشل: " + (e.message || e), "err"); } finally { busy(false); }
+}
+
+/* ================= LOG ================= */
+const ACTION = { update_participant: "تعديل مشارك", bulk_status: "تغيير حالة جماعي", delete_participant: "حذف تسجيل", build_teams: "حفظ فرق جديدة", rename_team: "إعادة تسمية فريق", dissolve_team: "حلّ فريق" };
+function renderLog() {
+  $("#view").innerHTML = `<div class="card">${S.L.length ? S.L.map((l) => `<div class="log-row"><span class="t">${esc(fdt(l.created_at))}</span><div class="a">${esc(ACTION[l.action] || l.action)}<small>${esc(l.admin_email || "")}</small></div><span class="w">${esc(JSON.stringify(l.details || {}).slice(0, 140))}</span></div>`).join("") : '<div class="empty">لا عمليات مسجّلة بعد.</div>'}</div>`;
+}
+
+/* ================= EVENTS ================= */
+document.addEventListener("click", async (e) => {
+  if (e.target.matches('input[type="checkbox"]')) return;
+  const el = e.target.closest("[data-act]"); if (!el) return;
+  const a = el.dataset.act;
+  switch (a) {
+    case "nav": go(el.dataset.view); break;
+    case "refresh": await loadAll(); toast("تم تحديث البيانات"); break;
+    case "signout": await sb.auth.signOut(); break;
+    case "review-pending": S.f = { q: "", role: "all", status: "pending", country: "all", spec: "all", team: "all" }; go("participants"); break;
+    case "open": openDrawer(el.dataset.id); break;
+    case "drawer-close": closeDrawer(); break;
+    case "drawer-save": await saveDrawer(); break;
+    case "drawer-delete": await deleteDrawer(); break;
+    case "page": S.page = Math.max(1, +el.dataset.p); renderTable(); break;
+    case "export": exportCSV(); break;
+    case "clearsel": S.sel.clear(); renderTable(); break;
+    case "bulk": {
+      const ids = [...S.sel]; if (!ids.length) break;
+      const st = el.dataset.status;
+      if (!confirm(`تغيير حالة ${ids.length} إلى «${STATUS[st]}»؟`)) break;
+      if (await patchParticipants(ids, { status: st }, "bulk_status", { status: st })) { S.sel.clear(); toast("تم التحديث"); render(); }
+      break;
+    }
+    case "build": doBuild(); break;
+    case "swap": doSwap(+el.dataset.t, +el.dataset.i); break;
+    case "savedraft": await saveDraft(); break;
+    case "discard": S.draft = null; S.left = []; S.swap = null; renderTeams(); break;
+    case "rename": await renameTeam(el.dataset.id); break;
+    case "dissolve": await dissolveTeam(el.dataset.id); break;
+  }
+});
+document.addEventListener("input", (e) => {
+  const k = e.target.dataset && e.target.dataset.f;
+  if (k === "q") { S.f.q = e.target.value; S.page = 1; renderTable(); }
+});
+document.addEventListener("change", (e) => {
+  const t = e.target;
+  if (t.dataset.f && t.dataset.f !== "q") { S.f[t.dataset.f] = t.value; S.page = 1; renderTable(); }
+  else if (t.dataset.chk) { t.checked ? S.sel.add(t.dataset.chk) : S.sel.delete(t.dataset.chk); renderTable(); }
+  else if ("chkall" in t.dataset) {
+    const rows = filtered().slice((S.page - 1) * PER, S.page * PER);
+    rows.forEach((p) => (t.checked ? S.sel.add(p.id) : S.sel.delete(p.id))); renderTable();
+  }
+});
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#drawer").hidden) closeDrawer(); });
+setInterval(() => { if (S.user && S.view === "overview" && $("#drawer").hidden) loadAll(true); }, 90000);
+
+/* ================= INIT ================= */
+(async function init() {
+  const { data } = await sb.auth.getSession();
+  if (data.session) await enter(data.session); else showLogin();
+})();
+</script>
+</body>
+</html>
