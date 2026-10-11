@@ -608,7 +608,7 @@ async function loadStats() {
     renderStats(data);
   } catch (e) {
     console.error(e);
-    $("#statState").textContent = "تعذّر تحميل الأرقام حالياً";
+    $("#statState").textContent = "تعذّر تحميل الأرقام حالياً" + (e && (e.code || e.message) ? " [" + (e.code || e.message) + "]" : "");
   }
 }
 loadStats();
@@ -733,7 +733,7 @@ function uuid() {
   if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => { const r = Math.random() * 16 | 0; return (c === "x" ? r : (r & 3 | 8)).toString(16); });
 }
-function showError(msg) { const e = $("#formError"); e.textContent = msg; e.hidden = false; e.scrollIntoView({ behavior: "smooth", block: "center" }); }
+function showError(msg, detail) { const e = $("#formError"); e.textContent = msg + (detail ? " [" + detail + "]" : ""); e.hidden = false; e.scrollIntoView({ behavior: "smooth", block: "center" }); }
 
 $("#regForm").addEventListener("submit", async (ev) => {
   ev.preventDefault();
@@ -773,14 +773,14 @@ $("#regForm").addEventListener("submit", async (ev) => {
     const { error } = await sb.from("hack_participants").insert(row);
     if (error) {
       if (error.code === "23505") { showError("هذا البريد مسجّل لدينا مسبقاً. إن كنت تظن أن هذا خطأ، تواصل معنا."); }
-      else { console.error(error); showError("حدث خطأ أثناء الإرسال. تحقّق من اتصالك وحاول مرة أخرى."); }
+      else { console.error(error); showError("حدث خطأ أثناء الإرسال. تحقّق من اتصالك وحاول مرة أخرى.", (error.code || "") + " " + (error.message || "")); }
       return;
     }
     finish(code);
     loadStats();
   } catch (e) {
     console.error(e);
-    showError("حدث خطأ غير متوقع. حاول مرة أخرى بعد قليل.");
+    showError("حدث خطأ غير متوقع. حاول مرة أخرى بعد قليل.", e && e.message);
   } finally {
     submit.disabled = false; submit.textContent = "أرسل تسجيلي";
   }
